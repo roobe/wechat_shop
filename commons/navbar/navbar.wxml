@@ -1,0 +1,38 @@
+<block wx:if="{{_navbar && _navbar.navs && _navbar.navs.length>0}}">
+    <view class="navbar flex-row" style="background-image: url({{_navbar.background_image}})">
+        <block wx:for="{{_navbar.navs}}">
+            <navigator class="flex-grow-1 flex-y-center" url="{{item.url}}" open-type="wxapp" wx:if='{{item.open_type == "wxapp"}}' bindtap='naveClick' data-appid='{{item.appid}}' data-path='{{item.path}}' data-open_type='{{item.open_type}}'>
+                <view>
+                    <image class="navbar-icon" src="{{item.active?item.active_icon:item.icon}}"></image>
+                    <view class="navbar-text" style="color: {{item.active?item.active_color:item.color}};">{{item.text}}
+                    </view>
+                </view>
+            </navigator>
+            <navigator class="flex-grow-1 flex-y-center" url="{{item.url}}" open-type="tel" wx:elif='{{item.open_type == "tel"}}' bindtap='naveClick' data-tel='{{item.tel}}' data-open_type='{{item.open_type}}'>
+                <view>
+                    <image class="navbar-icon" src="{{item.active?item.active_icon:item.icon}}"></image>
+                    <view class="navbar-text" style="color: {{item.active?item.active_color:item.color}};">{{item.text}}
+                    </view>
+                </view>
+            </navigator>
+            <block wx:elif='{{item.open_type == "contact"}}'>
+                <view class='flex-grow-1 flex-y-center' style='width:1%;padding-top:8rpx;'>
+                    <view style='width:100%;'>
+                        <button open-type="contact" session-from="{{_user_info.nickname}}|">
+                            <image class="navbar-icon" src="{{item.active?item.active_icon:item.icon}}"></image>
+                            <view class="navbar-text" style="color: {{item.active?item.active_color:item.color}};">{{item.text}}
+                            </view>
+                        </button>
+                    </view>
+                </view>
+            </block>
+            <navigator class="flex-grow-1 flex-y-center" url="{{item.url}}" open-type="redirect" data-open_type='{{item.open_type}}' wx:else>
+                <view>
+                    <image class="navbar-icon" src="{{item.active?item.active_icon:item.icon}}"></image>
+                    <view class="navbar-text" style="color: {{item.active?item.active_color:item.color}};">{{item.text}}
+                    </view>
+                </view>
+            </navigator>
+        </block>
+    </view>
+</block>

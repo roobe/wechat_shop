@@ -1,0 +1,43 @@
+<!--pages/address-edit/address-edit.wxml-->
+<view class="bottom-bar">
+    <navigator bindtap="saveAddress">保存</navigator>
+</view>
+<view>
+    <view class="flex-row flex-y-center edit-row">
+        <view class="flex-grow-0 row-label">收货人</view>
+        <view class="flex-grow-1">
+            <input placeholder="" value="{{name}}" data-name="name" bindinput="inputBlur"/>
+        </view>
+    </view>
+
+    <view class="flex-row flex-y-center edit-row">
+        <view class="flex-grow-0 row-label">联系电话</view>
+        <view class="flex-grow-1">
+            <input placeholder="" value="{{mobile}}" data-name="mobile" type="number" bindinput="inputBlur"/>
+        </view>
+    </view>
+
+    <view class="flex-row flex-y-center edit-row">
+        <view class="flex-grow-0 row-label">所在地区</view>
+        <view class="flex-grow-1 flex-row" bindtap="showAreaPicker">
+            <view class="flex-grow-1" style="text-align: right;padding-right: 24rpx">
+                <block wx:if="{{district==null}}">请选择</block>
+                <block wx:else>{{district.province.name}} {{district.city.name}} {{district.district.name}}</block>
+            </view>
+            <view class="flex-grow-0 flex-y-center">
+                <image src="/images/icon-jiantou-r.png" style="width: 12rpx;height: 22rpx"/>
+            </view>
+        </view>
+    </view>
+
+    <view class="flex-row flex-y-center edit-row">
+        <view class="flex-grow-0 row-label">详细地址</view>
+        <view class="flex-grow-1">
+            <input placeholder="" value="{{detail}}" data-name="detail" bindinput="inputBlur"/>
+        </view>
+    </view>
+
+    <view bindtap="getWechatAddress" class="get-wechat-address">一键获取微信地址</view>
+
+</view>
+<include src="../../area-picker/area-picker.wxml"/>

@@ -1,0 +1,55 @@
+<!--pages/member/member.wxml-->
+<view class='info'>
+  <view class='info-title flex-row'>
+    <image class='bg' src='/images/icon-member-bg.png'></image>
+    <view class='flex-grow-0 left'>
+      <image src='{{user_info.avatar_url}}' class='avatar'></image>
+    </view>
+    <view class='flex-grow-1 right flex-col flex-x-center'>
+      <view class='member-name flex-row flex-y-bottom'>
+        <text class='flex-grow-0 text-more' style='font-size:13pt;max-width:208rpx;width:auto;'>{{user_info.nickname}}</text>
+        <view class='level-name flex-y-bottom flex-grow-0'>
+          <image src='/images/icon-user-level.png'></image>
+          <view class='flex-y-center' style='height:100%;'>
+            <view class='text-more' style='width:auto;max-width:208rpx'>{{user_info.level_name || "普通用户"}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='member-progress'>
+        <progress percent='{{percent}}' stroke-width='6' activeColor='#eda200' backgroundColor='#686868' active='true'></progress>
+      </view>
+      <view class='member-content'>已消费{{order_money}}元<text wx:if='{{next_level}}'>，升级还需消费{{s_money}}元</text></view>
+    </view>
+  </view>
+  <view class='level-content'>
+    <view class='block flex-row flex-y-center'>
+      <view class='flex-grow-0 flex-y-center'>
+        <image src='/images/icon-member-rights.png'></image>
+      </view>
+      <view class='flex-grow-1'>我的会员权益</view>
+    </view>
+    <view class='block flex-row flex-y-center' style='border:0;margin-bottom:20rpx;'>
+      <view class='flex-grow-0 flex-y-center' style='padding-bottom:14rpx;margin-right:10rpx;'>.</view>
+      <view class='flex-grow-1'>{{now_level.discount?"全场商品"+now_level.discount+"折":"无折扣"}}</view>
+    </view>
+    <view class='block flex-row flex-y-center' wx:if='{{next_level}}'>
+      <view class='flex-grow-0 flex-y-center'>
+        <image src='/images/icon-member-rights.png'></image>
+      </view>
+      <view class='flex-grow-1'>下一级会员权益</view>
+    </view>
+    <view class='block flex-row flex-y-center' style='border:0;margin-bottom:20rpx;' wx:if='{{next_level}}'>
+      <view class='flex-grow-0 flex-y-center' style='padding-bottom:14rpx;margin-right:10rpx;'>.</view>
+      <view class='flex-grow-1'>全场商品{{next_level.discount}}折</view>
+    </view>
+    <view class='block flex-row flex-y-center' wx:if='{{content}}'>
+      <view class='flex-grow-0 flex-y-center'>
+        <image src='/images/icon-member-level.png'></image>
+      </view>
+      <view class='flex-grow-1'>会员等级说明</view>
+    </view>
+    <view class='block flex-row flex-y-center' style='border:0;height:auto;padding:24rpx 37rpx;' wx:if='{{content}}'>
+      <text class="" style="font-size:10pt;line-height:1.5">{{content}}</text>
+    </view>
+  </view>
+</view>

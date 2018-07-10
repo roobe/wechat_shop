@@ -1,0 +1,46 @@
+<!--pages/book/order/details.wxml-->
+<view style='padding-bottom:120rpx'>
+    <view class='goods flex-row' bindtap='goToGoodsDetails'>
+        <view class='goods-pic flex-grow-0'>
+                <image src='{{goods.cover_pic}}'></image>
+        </view>
+        <view class='goods-info flex-grow-1 flex-col'>
+                <view class='goods-name flex-grow-1'>
+                        {{goods.name}}
+                </view>
+                <view class='money flex-grow-0 flex-row flex-y-bottom '>
+                    <view class='original_price flex-gorw-0'>
+                        ¥ {{goods.original_price}}
+                    </view>
+                    <view class='price flex-grow-0'>
+                        ¥ {{goods.pay_price}}
+                    </view>
+                </view>
+        </view>
+        <view class='goods-right flex-grow-0 flex-y-center'>
+                <image src='/images/img-share-right.png'></image>
+        </view>
+    </view>
+    <view class='order'>
+        <view class='order-title flex-y-center'>
+            订单信息
+        </view>
+        <view class='order-info'>
+            <view class='order-info-item'>
+                订单号：{{goods.order_no}}
+            </view>
+            <view class='order-info-item'>
+                下单时间：{{goods.addtime}}
+            </view>
+            <view class='order-info-item' wx:for='{{goods.orderForm}}'>
+                {{item.key}}：{{item.value}}
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='btn-group flex-row'>
+    <view class='btn-group-item promptly flex-x-center flex-y-cneter' bindtap='nowWriteOff'>
+            确认核销
+    </view>
+</view>

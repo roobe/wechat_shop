@@ -1,0 +1,25 @@
+{
+  "type": "input",
+  "timestamp": 1500971861675,
+  "detail": {
+    "value": "5",
+    "cursor": 1
+  },
+  "target": {
+    "id": "",
+    "dataset": {
+      "name": "mobile"
+    },
+    "offsetTop": 51,
+    "offsetLeft": 79
+  },
+  "currentTarget": {
+    "id": "",
+    "dataset": {
+      "name": "mobile"
+    },
+    "offsetTop": 51,
+    "offsetLeft": 79
+  },
+  "touches": []
+}

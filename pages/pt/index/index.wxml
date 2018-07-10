@@ -1,0 +1,186 @@
+<!--pages/pt/index.wxml-->
+<!-- //  顶部导航 -->
+<!-- <include src="../commons/cat/cat.wxml"/> -->
+<scroll-view class='group-top scroll-view-x'>
+    <view class='flex-row flex-y-center'>
+        <navigator open-type='navigate' url='/pages/pt/search/search' class='search-icon flex-grow-0 flex-y-center flex-x-center'>
+            <image src='/images/serach-index-icon.png'></image>
+        </navigator>
+        <view style='height:48rpx;border-right: 1rpx solid #e2e2e2;'>
+        </view>
+        <view class='flex-grow-1'>
+            <scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}">
+                <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
+                    热销
+                </view>
+                <block wx:for="{{cat}}" wx:key="unique">
+                    <view data-id="{{item.id}}" class="scroll-view-item {{cid==item.id ? 'active' : ''}}" bindtap="switchNav">
+                        {{item.name}}
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+    </view>
+</scroll-view>
+
+<include src="/commons/navbar/navbar" />
+<scroll-view class="after-navber" scroll-y style="height: 100%;" bindscrolltolower="pullDownLoading" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <!-- Banner 开始 -->
+    <swiper class="banner" autoplay="true" interval="5000" duration="300" indicator-dots="true" circular="true" indicator-active-color="#ff5c5c">
+        <block wx:for="{{banner}}">
+            <swiper-item>
+                <navigator url="{{item.page_url}}">
+                    <view class="slide-title">{{item.title}}</view>
+                    <image src="{{item.pic_url}}" class="slide-image" mode="aspectFill" />
+                </navigator>
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- Banner 结束 -->
+    <!--    advert  start   -->
+    <view class='advert' wx:if="{{ad && ad.length>0}}">
+
+        <view class='division'> </view>
+        <block wx:if="{{ad.length==1}}">
+            <view class="user-block" style="height: auto">
+                <navigator style="display:block;font-size: 0;width: 100%;height: auto;" bindtap="navigatorClick" data-url="{{ad[0].url}}" data-open_type="{{ad[0].open_type}}" url="{{ad[0].url}}">
+                    <image src="{{ad[0].pic_url}}" mode="widthFix" style="width: 100%;"></image>
+                </navigator>
+            </view>
+        </block>
+
+        <block wx:if="{{ad.length==2}}">
+            <view class="flex-row user-block" style="height: 360rpx;">
+                <view class="flex-grow-0" style="width: 300rpx;height: 100%; border-right: 5rpx solid transparent">
+                    <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[0].url}}" data-open_type="{{ad[0].open_type}}" url="{{ad[0].url}}">
+                        <image src="{{ad[0].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1" style="height: 100%;">
+                    <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[1].url}}" data-open_type="{{ad[1].open_type}}" url="{{ad[1].url}}">
+                        <image src="{{ad[1].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+        </block>
+
+        <block wx:if="{{ad.length==3}}">
+            <view class="flex-row user-block" style="height: 360rpx;">
+                <view class="flex-grow-0" style="width: 300rpx;height: 100%;border-right: 5rpx solid transparent">
+                    <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[0].url}}" data-open_type="{{ad[0].open_type}}" url="{{ad[0].url}}">
+                        <image src="{{ad[0].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1 flex-col" style="height: 100%;">
+                    <view class="flex-grow-1" style="height: 50%;border-bottom: 5rpx solid transparent">
+                        <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[1].url}}" data-open_type="{{ad[1].open_type}}" url="{{ad[1].url}}">
+                            <image src="{{ad[1].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                        </navigator>
+                    </view>
+                    <view class="flex-grow-1" style="height: 50%">
+                        <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[2].url}}" data-open_type="{{ad[2].open_type}}" url="{{ad[2].url}}">
+                            <image src="{{ad[2].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </block>
+
+        <block wx:if="{{ad.length==4}}">
+            <view class="flex-row user-block" style="height: 360rpx;">
+                <view class="flex-grow-0" style="width: 300rpx;height: 100%;border-right: 5rpx solid transparent">
+                    <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[0].url}}" data-open_type="{{ad[0].open_type}}" url="{{ad[0].url}}">
+                        <image src="{{ad[0].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+                <view class="flex-grow-1 flex-col" style="height: 100%">
+                    <view class="flex-grow-1" style="height: 50%;border-bottom: 5rpx solid transparent">
+                        <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[1].url}}" data-open_type="{{ad[1].open_type}}" url="{{ad[1].url}}">
+                            <image src="{{ad[1].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                        </navigator>
+                    </view>
+                    <view class="flex-grow-1 flex-row" style="height: 50%">
+                        <view class="flex-grow-1" style="height: 100%;border-right: 5rpx solid transparent">
+                            <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[2].url}}" data-open_type="{{ad[2].open_type}}" url="{{ad[2].url}}">
+                                <image src="{{ad[2].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                            </navigator>
+                        </view>
+                        <view class="flex-grow-1" style="height: 100%;">
+                            <navigator style="display:block;font-size: 0;width: 100%;height: 100%;" bindtap="navigatorClick" data-url="{{ad[3].url}}" data-open_type="{{ad[3].open_type}}" url="{{ad[3].url}}">
+                                <image src="{{ad[3].pic_url}}" style="width: 100%;height: 100%;" mode="aspectFill"></image>
+                            </navigator>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+
+    </view>
+    <!--    advert  end    -->
+    <view class='division'> </view>
+
+    <block wx:for="{{goods}}">
+        <!-- <view class='list-item flex-row' data-gid='{{item.id}}' bindtap='goDetails'> -->
+        <navigator url="/pages/pt/details/details?gid={{item.id}}" open-type="navigate" class='list-item flex-row'>
+            <view class='flex-grow-0 corver-pic'>
+                <image lazy-load="true" src='{{item.cover_pic}}'></image>
+            </view>
+            <view class='flex-grow-1 flex-col'>
+                <view class='flex-grow-1 goods-title'>
+                    {{item.name}}
+                </view>
+                <view class='flex-grow-0 flex-row'>
+                    <view class='group-item' wx:if='{{item.groupList[0]}}'>
+                        <view wx:for='{{item.groupList}}' wx:for-item="group">
+                            <image src='{{group.avatar_url}}'></image>
+                        </view>
+                        <!-- <view>      
+                                        <image src='https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eprCjIwMn5f9Fk34KeGoQvGzeGsnylcGcossLjtyzITJkQrranWghRNj9Cr3OGQNy62LPxTFwozrw/0'></image>
+                                </view>
+                                <view>
+                                        <image src='https://wx.qlogo.cn/mmopen/rXAA48ewV3ukmjE6XUQ27xLLMLw8EJx2fMjr5RkM44CA2TibG8DdibfqFdciaCtbQqAO5AMIiasicwu1cNREKiczDwYXM1icvyUPDbh/0'></image>
+                                </view> -->
+                    </view>
+                    <view class='goods-sales'>
+                        已团 {{item.virtual_sales}} 件
+                    </view>
+                </view>
+                <view class='flex-grow-0 flex-row flex-y-bottom'>
+                    <view class='flex-grow-0 price flex-row flex-y-bottom'>
+                        <view class='unit flex-grow-0 flex-y-bottom'>
+                            ¥
+                        </view>
+                        <view class='flex-grow-1 flex-y-bottom'>{{item.price}}</view>
+                    </view>
+                    <view class='flex-grow-1 old-price flex-y-bottom'>
+                        ¥ {{item.original_price}}
+                    </view>
+                    <view class='flex-grow-0 group-btn flex-x-center flex-y-center'>
+                        去开团
+                    </view>
+                </view>
+            </view>
+        </navigator>
+    </block>
+    <view class="loading-bar {{show_loading_bar?'active':''}}" style="text-align: center;{{emptyGoods==1?'display:none':''}}">
+        <image style="width: 160rpx;height: 80rpx" src="/images/loading.svg"></image>
+    </view>
+    <view class="empty-bar flex-row flex-x-center flex-y-center" style="{{emptyGoods!=1?'display:none':''}}">
+        没有更多商品了~
+    </view>
+</scroll-view>
+
+<include src="/commons/get-coupon/get-coupon.wxml" />
+<include src="/commons/float-icon/float-icon.wxml" />
+
+<!-- <view class='new-group flex-y-center'>
+        <view class='new-group-bg'></view>
+        <view class='new-group-info flex-row flex-y-center'>
+            <view class='flex-grow-0 flex-y-center'>
+                <image src='https://wx.qlogo.cn/mmopen/rXAA48ewV3srPUiahLv7f3HQVQiaiceqmM0Z2rhiaGaIN4TiclvniavVUqmNyicEaJMQpic2slkQ9V2OkjAs89s1D6CAQA/0'></image>
+            </view>
+            <view class='flex-grow-1 flex-y-center group-info-text'>
+                最新团来自疯狂的小土豆啊，100秒前
+            </view>
+        </view>
+</view> -->

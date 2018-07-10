@@ -1,0 +1,46 @@
+<!--pages/order-refund-detail/order-refund-detail.wxml-->
+<view class="flex-row bg-white mb-20 data-row">
+    <view class="flex-grow-0">
+        <image style="width: 156rpx;height: 156rpx;margin-right:20rpx " mode="aspectFill"
+               src="{{order_refund.goods_pic}}"></image>
+    </view>
+    <view class="flex-grow-1 flex-col">
+        <view class="flex-grow-1 mb-20">{{order_refund.name}}</view>
+        <view class="flex-grow-0 flex-row" style="font-size: 9pt">
+            <view class="flex-grow-1">
+                <view style="margin-right: 40rpx;display: inline-block" wx:for="{{order_refund.attr}}">
+                    {{item.attr_group_name}}:{{item.attr_name}}
+                </view>
+            </view>
+            <view class="flex-grow-0">×{{order_refund.num}}</view>
+        </view>
+    </view>
+</view>
+<view class="bg-white mb-20 data-row">
+    <view class="mb-20">售后类型：{{order_refund.refund_type==1?'退货退款':'换货'}}</view>
+    <view class="mb-20">退款金额：<span style="color:#ff4544">￥{{order_refund.refund_price}}</span></view>
+    <view class="mb-20">申请原因：{{order_refund.refund_desc}}</view>
+    <view class="pic-list mb-20">
+        <image bindtap="viewImage" data-index="{{index}}" wx:for="{{order_refund.refund_pic_list}}" mode="aspectFill"
+               style="width: 160rpx;height: 160rpx"
+               src="{{item}}"></image>
+    </view>
+    <view style="border-top: 1rpx solid #eee;padding-top: 20rpx">
+        <block wx:if="{{order_refund.refund_type==1}}">
+            <view>
+                <text>审核结果：</text>
+                <text wx:if="{{order_refund.refund_status==0}}">等待审核中</text>
+                <text style="color:#36ba75" wx:if="{{order_refund.refund_status==1}}">已同意退货并已退款</text>
+                <text style="color:#ff4544" wx:if="{{order_refund.refund_status==3}}">已拒绝退货退款</text>
+            </view>
+        </block>
+        <block wx:else>
+            <view>
+                <text>审核结果：</text>
+                <text wx:if="{{order_refund.refund_status==0}}">等待审核中</text>
+                <text style="color:#36ba75" wx:if="{{order_refund.refund_status==2}}">已同意换货</text>
+                <text style="color:#ff4544" wx:if="{{order_refund.refund_status==3}}">已拒绝换货</text>
+            </view>
+        </block>
+    </view>
+</view>

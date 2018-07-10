@@ -1,0 +1,13 @@
+/* pages/order-refund-detail/order-refund-detail.wxss */
+.data-row{
+    padding: 28rpx 24rpx;
+    border-top: 1rpx solid #e3e3e3;
+}
+.pic-list{
+    margin-left: -20rpx;
+    margin-top: -20rpx;
+}
+.pic-list image{
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+}

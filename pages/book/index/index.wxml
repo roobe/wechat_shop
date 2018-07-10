@@ -1,0 +1,56 @@
+<include src="/commons/navbar/navbar"/>
+<!--pages/book/index/index.wxml-->
+<!--pages/pt/index.wxml--> 
+<!-- //  顶部导航 -->
+<!-- <include src="../commons/cat/cat.wxml"/> -->
+<scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">
+    <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
+        全部
+    </view>
+    <block wx:for="{{cat}}" wx:key="unique">
+    <view data-id="{{item.id}}" class="scroll-view-item {{cid==item.id ? 'active' : ''}}"  bindtap="switchNav">
+         {{item.name}}
+    </view>
+  </block>
+</scroll-view>
+<include src="/commons/navbar/navbar"/>
+<scroll-view class="after-navber" scroll-y style="height: 100%;"bindscrolltolower="pullDownLoading" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style='{{cat_show=="1"?"padding-top: 100rpx;":""}}'>
+    <view class='goods'>
+        <navigator class='goods-item' wx:for="{{goods}}" url='/pages/book/details/details?id={{item.id}}'>
+            <view class='goods-pic'>
+                    <image src='{{item.cover_pic}}'></image>
+            </view>
+            <view class='goods-title'>
+                {{item.name}}
+            </view>
+            <view class='price flex-row flex-y-center'>
+                <view class='money flex-grow-1 flex-y-center' wx:if='{{item.price!=0}}'>
+                    ¥ {{item.price}}
+                </view>
+                <view class='money flex-grow-1 flex-y-center' wx:if='{{item.price==0}}'>
+                    免费预约
+                </view>
+                <view class='go-book flex-gorw-0 flex-x-center flex-y-center'>
+                        预约
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="loading-bar {{show_loading_bar?'active':''}}" style="text-align: center;{{emptyGoods==1?'display:none':''}}">
+        <image style="width: 160rpx;height: 80rpx" src="/images/loading.svg"></image>
+    </view>
+    <view class="empty-bar flex-row flex-x-center flex-y-center" style="{{emptyGoods!=1?'display:none':''}}">
+        没有更多商品了~
+    </view>
+</scroll-view>
+<!-- <view class='new-group flex-y-center'>
+        <view class='new-group-bg'></view>
+        <view class='new-group-info flex-row flex-y-center'>
+            <view class='flex-grow-0 flex-y-center'>
+                <image src='https://wx.qlogo.cn/mmopen/rXAA48ewV3srPUiahLv7f3HQVQiaiceqmM0Z2rhiaGaIN4TiclvniavVUqmNyicEaJMQpic2slkQ9V2OkjAs89s1D6CAQA/0'></image>
+            </view>
+            <view class='flex-grow-1 flex-y-center group-info-text'>
+                最新团来自疯狂的小土豆啊，100秒前
+            </view>
+        </view>
+</view> -->

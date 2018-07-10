@@ -1,0 +1,83 @@
+<!--cart.wxml-->
+<include src="/commons/navbar/navbar"/>
+<view class="after-navber">
+    <view class="bottom-bar flex-row">
+        <view class="flex-y-center flex-grow-1" style="padding: 0 24rpx">
+            <view bindtap="cartCheckAll" class="flex-grow-0 flex-y-center" style="margin-right: 20rpx">
+                <view class="cart-checkbox {{cart_check_all?'active':''}}" style="margin-right: 10rpx"></view>
+                <text style="white-space: nowrap">全选</text>
+            </view>
+            <view class="flex-grow-1" style="color:#ff4544;white-space: nowrap">
+                总计:￥{{total_price}}
+            </view>
+        </view>
+        <block wx:if="{{show_cart_edit}}">
+            <view class="flex-y-center flex-grow-0 flex-x-center edit-btn" bindtap="cartDone">完成</view>
+            <view class="flex-y-center flex-grow-0 flex-x-center submit-btn" bindtap="cartDelete">删除</view>
+        </block>
+        <block wx:else>
+            <view class="flex-y-center flex-grow-0 flex-x-center edit-btn" bindtap="cartEdit">编辑</view>
+            <view class="flex-y-center flex-grow-0 flex-x-center submit-btn" bindtap="cartSubmit">结算</view>
+        </block>
+    </view>
+
+    <view wx:if="{{show_no_data_tip}}" class="no-data-tip">
+        <view class="no-data-icon flex-y-center flex-x-center">
+            <image src="/images/nav-icon-cart.png" style="width: 81rpx;height: 81rpx"></image>
+        </view>
+        <view>购物车还是空的哦</view>
+    </view>
+    <view class="cart-list">
+        <view class="cart-item flex-row" wx:for="{{cart_list}}">
+
+            <view wx:if="{{item.disabled&&!show_cart_edit}}" class="flex-grow-0 flex-y-center" style="padding: 24rpx">
+                <view style="width: 40rpx"></view>
+            </view>
+
+            <view wx:else data-index="{{index}}" bindtap="cartCheck" class="flex-grow-0 flex-y-center"
+                  style="padding: 24rpx">
+                <view class="cart-checkbox {{item.checked?'active':''}}"></view>
+            </view>
+
+            <view class="flex-grow-1">
+
+                <view class="flex-grow-1 flex-row">
+                    <view class="flex-grow-0">
+                        <image class="goods-pic" mode="aspectFill" src="{{item.goods_pic}}"/>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1">
+                            <view class="goods-name">
+                                <navigator url="/pages/goods/goods?id={{item.goods_id}}">{{item.goods_name}}</navigator>
+                            </view>
+                            <view class="attr-list">
+                                <view class="attr-item" wx:for="{{item.attr_list}}" wx:for-item="attr">
+                                    {{attr.attr_group_name}}:{{attr.attr_name}}
+                                </view>
+                            </view>
+                        </view>
+                        <view class="flex-grow-0 flex-row">
+                            <view class="flex-grow-1 price">￥{{item.unitPrice}}</view>
+                            <view>
+                                <view class="flex-row">
+                                    <image wx:if="{{item.num!=1}}" bindtap="cartLess" id="{{item.cart_id}}" class="image1" src="/images/cart_less.png"/>
+                                    <image wx:if="{{item.num==1}}" class="image1" src="/images/cart_no_less.png"/>
+
+                                    <view class="row-data">{{item.num}}</view>
+
+                                    <image wx:if="{{item.num==item.max_num}}" class="image1" src="/images/cart_no_add.png"/>
+                                    <image wx:if="{{item.num!=item.max_num}}" bindtap="cartAdd" id="{{item.cart_id}}" class="image1" src="/images/cart_add.png"/> 
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view>
+                    <text wx:if="{{item.num>item.max_num}}" class="cart-tag">库存不足</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+

@@ -1,0 +1,58 @@
+<!-- 优先使用新的版权方案 -->
+<block wx:if="{{copyright&&(copyright.icon||copyright.text)}}">
+    <view wx:if="{{copyright.open_type=='wxapp'}}" style="padding: 24rpx">
+        <view style="text-align: center;font-size: 0;">
+            <image wx:if="{{copyright.icon}}" src="{{copyright.icon}}"
+                   style="height: 60rpx;width: 240rpx"
+                   bindtap="openWxapp"
+                   data-url="{{copyright.url}}"
+                   mode="aspectFit"></image>
+        </view>
+        <view style="text-align: center;line-height: 1">
+            <text wx:if="{{copyright.text}}"
+                  bindtap="openWxapp"
+                  style="color: rgba(0,0,0,.3);font-size: 9pt;"
+                  data-url="{{copyright.url}}">{{copyright.text}}</text>
+        </view>
+    </view>
+    <view wx:elif="{{copyright.open_type=='navigate'}}" style="padding: 24rpx">
+        <view style="text-align: center;font-size: 0;">
+            <navigator url="{{copyright.url}}" style="display: inline-block">
+                <image wx:if="{{copyright.icon}}" src="{{copyright.icon}}"
+                       style="height: 60rpx;width: 240rpx"
+                       mode="aspectFit"></image>
+            </navigator>
+        </view>
+        <view style="text-align: center;line-height: 1">
+            <navigator wx:if="{{copyright.text}}"
+                  style="color: rgba(0,0,0,.3);font-size: 9pt;display: inline-block"
+                  url="{{copyright.url}}">{{copyright.text}}</navigator>
+        </view>
+    </view>
+    <view wx:else style="padding: 24rpx">
+        <view style="text-align: center;font-size: 0;">
+            <image wx:if="{{copyright.icon}}" src="{{copyright.icon}}"
+                   style="height: 60rpx;width: 240rpx"
+                   mode="aspectFit"></image>
+        </view>
+        <view style="text-align: center;line-height: 1">
+            <text wx:if="{{copyright.text}}"
+                  style="color: rgba(0,0,0,.3);font-size: 9pt;">{{copyright.text}}</text>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <block wx:if="{{store.copyright||store.copyright_pic_url}}">
+        <view class="flex-y-center flex-x-center flex-col" style="padding: 20rpx">
+            <view wx:if="{{store.copyright_pic_url}}">
+                <navigator url="{{store.copyright_url}}">
+                    <image src="{{store.copyright_pic_url}}" style="height: 60rpx;width: 240rpx"
+                           mode="aspectFit"></image>
+                </navigator>
+            </view>
+            <view wx:if="{{store.copyright}}" style="color: rgba(0,0,0,.3);font-size: 9pt;">
+                <navigator url="{{store.copyright_url}}">{{store.copyright}}</navigator>
+            </view>
+        </view>
+    </block>
+</block>

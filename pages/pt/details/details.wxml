@@ -1,0 +1,376 @@
+<!--pages/pt/details/details.wxml-->
+<view class='{{show_attr_picker?"no-scroll":""}}'>
+    <swiper class="goods-image-swiper" autoplay="{{autoplay}}" interval="5000" duration="300" indicator-dots="true" circular="true" bindchange="hide" indicator-active-color="#ff5c5c">
+        <block wx:for="{{goods.pic_list}}">
+            <swiper-item>
+                <block wx:if="{{goods.video_url}}">
+                    <!-- <view style='width:750rpx;height:700rpx;position:absolute;top:0;left:0;'> -->
+                    <image class="play {{img_hide}}" src="/images/video-play.png" data-url="{{goods.video_url}}" bindtap="play"></image>
+                    <!-- </view> -->
+                </block>
+                <image bindtap="onGoodsImageClick" data-index="{{index}}" class="goods-image" src="{{item}}" mode="aspectFill" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class='time-limit flex-row' wx:if='{{goods.limit_time>0}}'>
+        <view class='flex-grow-0 flex-y-center flex-x-center'>
+            <image src='/images/pt-details-pt.png'></image>
+        </view>
+        <view class='flex-grow-1 time-limit-logo-text'>
+            限时火拼・超值低价
+        </view>
+        <view class='flex-grow-1 flex-col flex-y-center flex-x-center'>
+            <view class='flex-grow-0 time-top-text'>
+                距离结束时间剩
+            </view>
+            <view class='flex-grow-0 flex-row time-info flex-y-center'>
+                <view class='flex-grow-1 time-value flex-y-center flex-x-center'>
+                    {{limit_time.days}}
+                </view>
+                <view class='flex-grow-0'>
+                    天
+                </view>
+                <view class='flex-grow-1 time-value flex-y-center flex-x-center'>
+                    {{limit_time.hours}}
+                </view>
+                <view class='flex-grow-0'>
+                    时
+                </view>
+                <view class='flex-grow-1 time-value flex-y-center flex-x-center'>
+                    {{limit_time.mins}}
+                </view>
+                <view class='flex-grow-0'>
+                    分
+                </view>
+                <view class='flex-grow-1 time-value flex-y-center flex-x-center'>
+                    {{limit_time.secs}}
+                </view>
+                <view class='flex-grow-0'>
+                    秒
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='flex-row goods-money'>
+        <view class='flex-grow-0 flex-row flex-y-bottom'>
+            <view class='flex-grow-0 flex-y-bottom'>
+                ¥
+            </view>
+            <view class='flex-grow-1flex-y-bottom goods-money-num'>
+                {{goods.price}}
+            </view>
+        </view>
+        <view class='flex-col flex-grow-1'>
+            <view class='flex-grow-0 flex-row original-price'>
+                <view class='flex-grow-0'>
+                    ¥
+                </view>
+                <view class='flex-grow-1'>
+                    {{goods.original_price}}
+                </view>
+            </view>
+            <view class='flex-row flex-grow-0 group-descount'>
+                <view class='flex-grow-0 group-descount-one'>
+                    {{goods.group_num}}人拼团
+                </view>
+                <view class='flex-grow-0 group-descount-center'>
+                </view>
+                <view class='flex-grow-0 group-descount-tow'>
+                    拼团立省¥{{reduce_price}}
+                </view>
+            </view>
+        </view>
+
+        <!-- <button class='flex-grow-0 flex-col group-share' open-type="share"> -->
+        <button class='flex-grow-0 flex-col group-share' bindtap='showShareModal'>
+            <view class='flex-grow-0'>
+                <image src='/images/icon-group-share.png'></image>
+            </view>
+            <view class='flex-grow-0 group-share-text'>
+                分享
+            </view>
+        </button>
+    </view>
+    <view class='flex-row goods-name'>
+        {{goods.name}}
+    </view>
+    <view class='flex-row' style='padding-right:24rpx;background-color:#f7f7f7;' wx:if='{{goods.service.length > 1}}'>
+        <view class='goods-service flex-row flex-gorw-1 flex-y-center'>
+            <view class='service-item flex-y-center' wx:for='{{goods.service}}'>
+                <image src='/images/ico-pt-active.png'></image>
+                <view class='flex-grow-1'>
+                    {{item}}
+                </view>
+            </view>
+        </view>
+        <!-- <view class='service-more flex-grow-0 flex-y-center'>
+            <image src='/images/img-share-right.png'></image>
+        </view> -->
+    </view>
+
+
+    <view class='goods-attr flex-row flex-y-center' bindtap='showAttrPicker'>
+        <view class='goods-attr-title flex-grow-0 flex-y-center'>
+            选择
+        </view>
+        <view class='goods-attr-value flex-grow-1'>
+            规格
+        </view>
+        <view class='goods-attr-more flex-grow-0 flex-y-center'>
+            <image src='/images/img-share-right.png'></image>
+        </view>
+    </view>
+    <view class='friend-group'>
+        <view class='pt-goods-rule flex-row flex-y-center' bindtap='goArticle'>
+            <view class='pt-rule-title flex-grow-1 flex-y-center'>
+                支付商品开团，邀请好友参与，成功发货失败退款
+            </view>
+            <view class='pt-rule-right flex-grow-0 flex-y-center'>
+                详细规则
+            </view>
+            <view class='pt-rule-more flex-grow-0 flex-y-center'>
+                <image src='/images/img-share-right.png'></image>
+            </view>
+        </view>
+        <view class='friend-group-info' wx:if="{{group_num > 0}}">
+            <view class='friend-group-title flex-row'>
+                以下小伙伴正在发起拼团，您可以直接参与:
+            </view>
+            <view class='friend-group-item flex-row flex-y-center' wx:for="{{group_list}}">
+                <view class='friend-corver-pic flex-grow-0 flex-y-center'>
+                    <image src='{{item.avatar_url}}'></image>
+                </view>
+                <view class='friend-name flex-grow-1 flex-y-center'>
+                    {{item.nickname}}
+                </view>
+                <view class='flex-grow-0 flex-col'>
+                    <view class='flex-grow-0 group-short'>
+                        还差{{item.surplus}}人成团
+                    </view>
+                    <view class='flex-grow-0 group-short-time'>
+                        还剩 {{item.limit_time.days}}:{{item.limit_time.hours}}:{{item.limit_time.mins}}:{{item.limit_time.secs}}
+                    </view>
+                </view>
+                <view class='flex-grow-0 go-offered flex-y-center flex-x-center' bindtap='goToGroup' data-id='{{item.id}}'>
+                    去参团
+                </view>
+            </view>
+            <!-- <view class='friend-group-item flex-row flex-y-center'>
+                <view class='friend-corver-pic flex-grow-0'>
+                    <image src='https://wx.qlogo.cn/mmopen/rXAA48ewV3srPUiahLv7f3HQVQiaiceqmM0Z2rhiaGaIN4TiclvniavVUqmNyicEaJMQpic2slkQ9V2OkjAs89s1D6CAQA/0'></image>
+                </view>
+                <view class='friend-name flex-grow-1'>
+                    一个跳蚤的梦ddddddddd
+                </view>
+                <view class='flex-grow-0 flex-col'>
+                    <view class='flex-grow-0 group-short'>
+                        还差1人成团
+                    </view>
+                    <view class='flex-grow-0 group-short-time'>
+                        还剩 22:10:48
+                    </view>
+                </view>
+                <view class='flex-grow-0 go-offered flex-y-center flex-x-center'>
+                    去参团
+                </view>
+            </view> -->
+        </view>
+    </view>
+    <!--     商品评论     -->
+    <view class='goods-comment'>
+        <view class='goods-comment-title flex-row flex-y-center' bindtap='goToComment'>
+            <view class='comment-left-text flex-grow-1 flex-y-center'>
+                买家评论{{comment_num}} | 销量 {{goods.virtual_sales}}
+            </view>
+            <view class='comment-more flex-grow-0 flex-y-center'>
+                <image src='/images/img-share-right.png'></image>
+            </view>
+        </view>
+        <view class='goods-comment-item flex-col' wx:for='{{comment}}' wx:for-index='ckey'>
+            <view class='goods-comment-user flex-grow-0 flex-row flex-y-center'>
+                <view class='comment-user-pic flex-grow-0'>
+                    <image src='{{item.avatar_url}}'></image>
+                </view>
+                <view class='comment-user-name flex-grow-0'>
+                    {{item.nickname}}
+                </view>
+            </view>
+            <view class='goods-comment-conent flex-grow-1'>
+                {{item.content}}
+            </view>
+            <view class='goods-comment-ginfo'>
+                {{item.addtime}}
+                <block wx:for='{{item.attr}}' wx:for-item="attr">
+                    {{attr.attr_group_name}}:{{attr.attr_name}}
+                </block>
+            </view>
+            <view class='goods-comment-piclist'>
+                <block wx:for='{{item.pic_list}}' wx:for-item="pic">
+                    <view class='comment-pic-shell'>
+                        <image bindtap='bigToImage' data-url='{{pic}}' data-index='{{ckey}}' src='{{pic}}'></image>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view class='pt-goods-content'>
+        <view class='pt-goods-content-title flex-y-center'>
+            商品详情
+        </view>
+        <view class='pt-goods-details'>
+            <import src="../../../wxParse/wxParse.wxml" />
+            <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+        </view>
+    </view>
+
+    <!-- <view class='shop-car'>
+        <image src='/images/pt-shop-car.png'></image>
+    </view> -->
+    <view class='pt-goods-footer flex-row'>
+        <view class='flex-grow-0 flex-col flex-y-center flex-x-center goods-footer-icon' bindtap='goHome'>
+            <view class='flex-gorw-0 flex-x-center'>
+                <image src='/images/pt-go-home.png'></image>
+            </view>
+            <view class='flex-gorw-0 flex-x-center'>
+                首页
+            </view>
+        </view>
+        <!-- <view class='flex-grow-0 flex-col flex-y-center flex-x-center goods-footer-icon'>
+            <view class='flex-gorw-0 flex-x-center'>
+                <image src='/images/pt-favorite.png'></image>
+            </view>
+            <view class='flex-gorw-0 flex-x-center'>
+                收藏
+            </view>
+        </view> -->
+        <view class='flex-grow-1 flex-col flex-y-center flex-x-center alone-buy' bindtap="onlyBuy" wx:if="{{goods.is_only==1}}">
+            <view class='flex-gorw-0 money'>
+                ¥{{goods.original_price}}
+            </view>
+            <view class='flex-grow-0'>
+                单独购买
+            </view>
+        </view>
+        <view class='flex-grow-1 flex-col flex-y-center flex-x-center group-buy' bindtap="buyNow" style='{{goods.is_only==1?"width: 338rpx":""}}'>
+            <view class='flex-gorw-0 money'>
+                ¥{{goods.price}}
+            </view>
+            <view class='flex-grow-0'>
+                {{goods.group_num}}人拼团
+            </view>
+        </view>
+    </view>
+</view>
+<view class="attr-picker" wx:if="{{show_attr_picker}}">
+    <view class="content-box">
+        <view class="flex-row" style="border-bottom: 1rpx solid #e3e3e3;padding: 24rpx 28rpx">
+            <view class="flex-grow-0">
+                <view class="goods-pic-box">
+                    <block wx:if="{{goods.attr_pic}}">
+                        <image mode="aspectFill" src="{{goods.attr_pic}}"></image>
+                    </block>
+                    <block wx:else>
+                        <image mode="aspectFill" src="{{goods.cover_pic}}"></image>
+                    </block>
+                </view>
+            </view>
+            <view class="flex-grow-1" style="padding: 0 24rpx">
+                <view style="color:#ff4544;margin-bottom: 12rpx;font-weight: bold">￥{{goods.price}}</view>
+                <view style="font-size:9pt">
+                    库存{{goods.num}}件
+                </view>
+            </view>
+            <view class="flex-grow-0">
+                <view bindtap="hideAttrPicker" class="flex-x-center flex-y-center" style="width: 100rpx;height: 100rpx">
+                    <image style="width: 30rpx;height: 30rpx" src="/images/icon-close.png" />
+                </view>
+            </view>
+        </view>
+        <scroll-view scroll-y="true" style="max-height: 650rpx;">
+            <view style="padding: 24rpx 28rpx">
+                <view>
+                    <view class="attr-group" wx:for="{{attr_group_list}}" wx:for-item="attr_group" wx:if="{{attr_group.attr_list.length>0}}">
+                        <view class="attr-group-name">{{attr_group.attr_group_name}}</view>
+                        <view class="attr-list">
+                            <text class="attr-item {{item.checked?'active':''}}" wx:for="{{attr_group.attr_list}}" data-group-id="{{attr_group.attr_group_id}}" data-id="{{item.attr_id}}" bindtap="attrClick">{{item.attr_name}}
+                                </text>
+                        </view>
+                    </view>
+                </view>
+                <view style="height: 0;border-bottom: 1rpx solid #e3e3e3;margin-bottom: 40rpx"></view>
+                <view style="padding-bottom: 40rpx">
+                    <view class="flex-row flex-y-center mb-20">
+                        <view class="flex-grow-1">数量</view>
+                        <view class="flex-grow-0">
+
+                            <view class="flex-row number-input-box">
+                                <view class="flex-grow-0 flex-x-center flex-y-center number-btn number-sub {{form.number<=1?'disabled':''}}" bindtap="numberSub">-
+                                </view>
+                                <view class="flex-grow-0">
+                                    <input class="flex-grow-1 number-input" value="{{form.number}}" type="number" step="1" min="1" bindblur="numberBlur" />
+                                </view>
+                                <view class="flex-grow-0 flex-x-center flex-y-center number-btn number-add" bindtap="numberAdd">+
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+
+    </view>
+</view>
+
+
+<view class="share-modal {{share_modal_active}}">
+    <view class="share-modal-body">
+        <view class="flex-row">
+            <view class="flex-grow-1 flex-x-center">
+                <button open-type="share" class="share-bottom">
+                    <image src="/images/icon-share-friend.png"></image>
+                    <view>分享给朋友</view>
+                </button>
+            </view>
+            <view class="flex-grow-1 flex-x-center">
+                <view bindtap="getGoodsQrcode" class="share-bottom">
+                    <image src="/images/icon-share-qrcode.png"></image>
+                    <view>生成商品海报</view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="shareModalClose" class="share-modal-close flex-y-center flex-x-center">关闭</view>
+    </view>
+</view>
+
+<view class="goods-qrcode-modal {{goods_qrcode_active}}">
+    <view class="goods-qrcode-body flex-col">
+        <view class="flex-grow-1" style="position: relative">
+            <view style="position: absolute;left: 0;top:0;width: 100%;height: 100%;padding: 100rpx 100rpx 60rpx">
+                <view class="goods-qrcode-box">
+                    <view class="goods-qrcode-loading flex-x-center flex-y-center">
+                        <view class="flex-x-center flex-col">
+                            <image style="width: 150rpx;height: 150rpx" src="/images/loading2.svg"></image>
+                            <view style="color: #888">海报生成中</view>
+                        </view>
+                    </view>
+                    <image bindtap="goodsQrcodeClick" mode="aspectFill" class="goods-qrcode {{goods_qrcode?'active':''}}" data-src="{{goods_qrcode}}" src="{{goods_qrcode}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="flex-grow-0 flex-col flex-x-center" style="padding: 0 60rpx 80rpx">
+            <view style="margin-bottom: 20rpx;padding: 0 40rpx">
+                <button wx:if="{{goods_qrcode}}" bindtap="saveGoodsQrcode" style="background: #ff4544;color: #fff;">
+                    保存图片
+                </button>
+                <button wx:else style="opacity: .4">保存图片</button>
+            </view>
+            <view style="color: #888;font-size: 9pt;text-align: center">保存至相册可以分享到朋友圈</view>
+        </view>
+        <view class="goods-qrcode-close" bindtap="goodsQrcodeClose">
+            <image src="/images/icon-close2.png" style="width: 50rpx;height: 50rpx;display: block"></image>
+        </view>
+    </view>
+</view>
+
+<include src="/commons/get-coupon/get-coupon.wxml" />
+<include src="/commons/float-icon/float-icon.wxml" />

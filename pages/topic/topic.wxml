@@ -1,0 +1,32 @@
+<!--pages/topic/topic.wxml-->
+<view class="body">
+    <view class="title">{{title}}</view>
+    <view class="flex-row info">
+        <view class="flex-grow-1">{{addtime}}</view>
+        <view class="flex-grow-0">{{read_count}}</view>
+    </view>
+    <view class="content">
+        <import src="../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    </view>
+</view>
+<view class="bar">
+    <view class="flex-row">
+        <view class="flex-grow-1 flex-x-center">
+            <view wx:if="{{is_favorite==1}}" class="btn" bindtap="favoriteClick" data-action="0">
+                <image class="icon" src="/images/icon-topic-love-active.png"></image>
+                <view>已收藏</view>
+            </view>
+            <view wx:else class="btn" bindtap="favoriteClick" data-action="1">
+                <image class="icon" src="/images/icon-topic-love.png"></image>
+                <view>收藏</view>
+            </view>
+        </view>
+        <view class="flex-grow-1 flex-x-center">
+            <button open-type="share" class="btn">
+                <image class="icon" src="/images/icon-topic-share.png"></image>
+                <view>分享</view>
+            </button>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,504 @@
+.quick_purchase {
+    height: 100%;
+    whith: 100%;
+    background: #fafafa;
+}
+
+.left_nav {
+    height: 100%;
+    width: 20%;
+    float: left;
+    padding-bottom: 130rpx;
+    background: #f3f3f3;
+}
+
+.cat_name {
+    height: 100rpx;
+    width: 100%;
+    font-size: 12px;
+    color: #353535;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat_name_active {
+    background: #fafafa;
+    color: #ff4544;
+}
+
+.quick-hot {
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    float: left;
+    margin-right: 6px;
+}
+
+.r_goods {
+    height: 100%;
+    width: 78%;
+    float: right;
+    padding-bottom: 130rpx;
+}
+
+.navname {
+    font-size: 11px;
+    color: #666;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.goodsall {
+    height: 174rpx;
+    width: 100%;
+    border-bottom: 1rpx solid #e6e6e6;
+    position: relative;
+}
+
+.goods {
+    height: 152rpx;
+    margin-top: 22rpx;
+    width: 100%;
+}
+
+.goods_pic {
+    width: 27%;
+    height: 100%;
+    float: left;
+}
+
+#goods_pic {
+    width: 100%;
+    height: 100%;
+}
+
+.goods_info {
+    width: 70%;
+    height: 100%;
+    margin-right: 1%;
+    float: right;
+}
+
+.goods_name {
+    font-size: 28rpx;
+    color: #353535;
+    margin-top: 10rpx;
+    font-weight: bold;
+}
+
+.guigenum {
+    position: absolute;
+    bottom: 60%;
+    left: 77%;
+    width: 35rpx;
+    height: 25rpx;
+    border-radius: 40%;
+    border: 1rpx solid red;
+    color: red;
+    background: #fff;
+    font-size: 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purchase {
+    position: absolute;
+    right: 1%;
+    bottom: 10rpx;
+    z-index: 100;
+    height: 50rpx;
+    width: 150rpx;
+}
+
+.standard {
+    border-radius: 100%;
+    width: 50rpx;
+    height: 50rpx;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guigepurchase {
+    position: absolute;
+    right: 1%;
+    bottom: 10rpx;
+    z-index: 100;
+    height: 50rpx;
+    width: 22%;
+    font-weight: bold;
+    color: #ffe5e5;
+    background: #ff4544;
+    font-size: 30rpx;
+    border-radius: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#goods_car {
+    position: fixed;
+    bottom:0%;
+    width: 100%;
+    height: 10%;
+    background: #565656;
+    opacity: 0.9;
+    z-index: 4444; 
+}
+
+.buy {
+    height: 100%;
+    width: 66%;
+    float: left;
+    margin-left: 4%;
+}
+
+.car_pic {
+    position: relative;
+    bottom: 15%;
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 100%;
+    float: left;
+}
+
+.car_png {
+    width: 100%;
+    height: 100%;
+}
+
+.weixuan {
+    font-size: 15px;
+    font-weight: bold;
+    color: #b5b5b5;
+    height: 100%;
+    width: 40%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goumai {
+    height: 100%;
+    width: 30%;
+    float: right;
+    font-size: 33rpx;
+    font-weight: bold;
+    color: #959595;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #686868;
+}
+
+.pay {
+    height: 100%;
+    width: 30%;
+    float: right;
+    font-size: 33rpx;
+    font-weight: bold;
+    color: #f1d1dd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fa5c51;
+}
+
+.price {
+    font-size: 17px;
+    color: #fff;
+    margin-left: 25rpx;
+    height: 100%;
+    width: 40%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total_num {
+    font-size: 20rpx;
+    color: #f1d1dd;
+    background: #ef503c;
+    width: 39%;
+    height: 25%;
+    border-radius: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 45%;
+    bottom: 100%;
+}
+
+.guige {
+    position: relative;
+    width: 136rpx;
+    height: 45rpx;
+    bottom: 30%;
+    left: 68%;
+}
+
+.carGoods {
+    
+    
+    
+    
+}
+.carHeader {
+    width: 100%;
+    height: 30rpx;
+    margin: 20rpx 0rpx;
+}
+.hr {
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.yixuan {
+    float: left;
+    width: 180rpx;
+    height: 100%;
+    color: #a7a7a7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25rpx;
+    font-size: 31rpx;
+    border-left: 6rpx solid #f76766;
+}
+
+.clearAll {
+    float: right;
+    height: 100%;
+    margin-right: 5%;
+}
+
+.carGood {
+    width: 100%;
+    height: 100rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.goodsname {
+    width: 47%;
+    height: 100%;
+    float: left;
+    line-height: 100rpx;
+    margin-left: 25rpx;
+    font-size: 30rpx;
+    color: #585858;
+}
+
+.goods_attr_name {
+    width: 49%;
+    height: 100%;
+    float: left;
+    margin-left: 25rpx;
+}
+
+.cargood_name {
+    width: 100%;
+    height: 50%;
+    font-size: 30rpx;
+    color: #585858;
+}
+
+.cargood_attr_name {
+    width: 100%;
+    height: 50%;
+    font-size: 25rpx;
+    color: #585858;
+}
+
+.goodsNumPrice {
+    width: 47%;
+    height: 100%;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goodsTotalPrice {
+    float: left;
+    width: 50%;
+    color: #ff4544;
+    font-size: 30rpx;
+    line-height: 100rpx;
+}
+
+.goodsNum {
+    float: right;
+    width: 48%;
+    margin-right: 2%;
+    line-height: 100rpx;
+}
+
+.carStandard {
+    border-radius: 100%;
+    width: 44rpx;
+    height: 44rpx;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carStandard_num {
+    width: 65rpx;
+}
+
+.close3 {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    left: 87%;
+}
+
+.show-btn {
+    margin-top: 100rpx;
+    color: #2c2;
+}
+
+.modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 2222;
+    color: #fff;
+}
+
+#modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 7777;
+    color: #fff;
+}
+
+.modal-dialog {
+    width: 638rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 40%;
+    left: 0;
+    background: #fff;
+    margin: -180rpx 60rpx;
+    border-radius: 16px;
+    z-index: 9999;
+}
+
+.modal-title {
+    padding: 60rpx 90rpx 40rpx 90rpx;
+    color: #353535;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.modal-content {
+    padding: 0rpx 32rpx;
+    font-size: 16px;
+    color: #959595;
+    height: 260rpx;
+}
+
+.modal-footer {
+    padding: 20rpx 0rpx;
+    height: 108rpx;
+    background: #f7f7f7;
+}
+
+.guigeshu {
+    border-radius: 100%;
+    width: 55rpx;
+    height: 55rpx;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-car {
+    height: 100%;
+    width: 240rpx;
+    float: right;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 32rpx;
+    margin-bottom: 20rpx;
+    border-radius: 8px;
+}
+
+.btn-car_num {
+    height: 100%;
+    float: right;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 32rpx;
+}
+
+.guigeprice {
+    height: 100%;
+    width: 30%;
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ff4544;
+    display: flex;
+    margin-left: 32rpx;
+    align-items: center;
+}
+
+.btn-confirm {
+    width: 50%;
+    color: #ec5300;
+    text-align: center;
+}
+
+.attr-group {
+    margin-bottom: 20rpx;
+}
+
+.attr_name {
+    margin-top: 20rpx;
+    margin-right: 60rpx;
+    background: #f7f7f7;
+    display: inline-block;
+    padding: 0rpx 30rpx;
+    border-radius: 10rpx;
+}
+
+.attr_name.active {
+    color: #ff4544;
+    background: #fff5f5;
+}
+
+.navbar + .quick_purchase {
+    padding-bottom: 115rpx;
+}
+
+.navbar+.quick_purchase #goods_car {
+    bottom: 120rpx;
+}

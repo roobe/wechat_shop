@@ -1,0 +1,80 @@
+/* pages/member/member.wxss */
+
+.info {
+  width: 100%;
+}
+
+.info-title {
+  position: relative;
+  width: 100%;
+  height: 220rpx;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.left {
+  padding: 37rpx 16rpx 0 37rpx;
+  position: relative;
+}
+
+.avatar {
+  width: 114rpx;
+  height: 114rpx;
+  border-radius: 114rpx;
+  border: 5rpx solid #fff;
+}
+
+.level-name {
+  height: 36rpx;
+  border-radius: 18rpx;
+  font-size: 8pt;
+  color: #fff;
+  background-color: #3c3642;
+  padding: 0 16rpx 0 0;
+  margin-left: 24rpx;
+}
+
+.level-name image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 10rpx;
+  margin-left: -4rpx;
+}
+
+.right{
+  width: 100%;
+  padding: 0 108rpx 0 24rpx;
+  color: #fff;
+}
+.member-name{
+  width: 100%;
+  margin-bottom: 26rpx;
+}
+.member-progress{
+  width: 100%;
+}
+.member-content{
+  width: 100%;
+  margin-top: 20rpx;
+  font-size: 9pt;
+}
+
+.block{
+  width: 100%;
+  height: 80rpx;
+  padding: 0 37rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+.block image{
+  width: 38rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}

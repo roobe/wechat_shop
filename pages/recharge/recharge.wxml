@@ -1,0 +1,27 @@
+<!--pages/recharge/recharge.wxml-->
+<view class='info'>
+    <view class='info-t'>充值金额</view>
+    <view class='list flex-row'>
+        <block wx:for='{{list}}'>
+            <view class='one flex-x-center {{selected == index ? "active" : ""}}' bindtap='click' data-index='{{index}}'>
+                <view wx:if='{{item.send_price>0}}'>
+                    <view class='flex-x-center one-1'>{{item.pay_price}}</view>
+                    <view class='flex-x-center one-2'>送{{item.send_price}}</view>
+                </view>
+                <view class='flex-y-center' wx:else>
+                    <view class='flex-x-center one-1'>{{item.pay_price}}</view>
+                </view>
+            </view>
+        </block>
+        <block wx:if='{{balance.type == 1}}'>
+            <view class='one flex-x-center {{selected == -1 ? "active" : ""}}' bindtap='click' data-index='-1'>
+                <view class='flex-y-center'>
+                    <view class='flex-x-center one-1'>
+                        <input class='r-input {{selected == -1 ? "active" : ""}}' type='number' placeholder='其他金额' placeholder-class='r-input-p' bindinput='input' value='{{money}}'></input>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class='recharge-btn flex-x-center flex-y-center' bindtap='pay'>立即充值</view>
+</view>

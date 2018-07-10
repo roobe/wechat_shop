@@ -1,0 +1,63 @@
+<include src="/commons/navbar/navbar"/>
+<view class="after-navber" style="height: 100%">
+    <view style="display: flex;flex-direction: column;height:100%;width: 100%">
+        <view style="flex-grow: 0">
+            <form>
+                <view class="search-box">
+                    <view class="input-box">
+                        <view style="font-size: 0">
+                            <image class="search-icon" src="/images/icon-search.png"/>
+                        </view>
+                        <view style="width: 100%">
+                            <input style="width: 100%" confirm-type="search" class="search-input" auto-focus="true"
+                                   bindconfirm="inputConfirm"
+                                   bindfocus="inputFocus" bindblur="inputBlur"/>
+                        </view>
+                    </view>
+                    <view>
+                        <view class="search-cancel" bindtap="searchCancel">取消</view>
+                    </view>
+                </view>
+            </form>
+        </view>
+        <view style="flex-grow: 1;position: relative">
+            <scroll-view scroll-y="true" style="height:100%;width:100%;position: absolute;left: 0;top:0"
+                         lower-threshold="5" bindscrolltolower="onListScrollBottom">
+                <block wx:if="{{show_history && history_list && history_list.length>0}}">
+                    <view class="search-history">
+                        <view>
+                            <text class="search-history-title">搜索历史</text>
+                            <view class="delete-search-history" bindtap="deleteSearchHistory">
+                                <image src="/images/icon-delete.png"
+                                       style="width: 28rpx;height: 34rpx"/>
+                            </view>
+                        </view>
+                        <view class="search-history-list">
+                            <view wx:for="{{history_list}}" class="search-history-item" data-value="{{item.keyword}}"
+                                  bindtap="historyClick">{{item.keyword}}
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{show_result}}">
+                    <view class="search-result">
+                        <view class="goods-list" style="padding-top: 20rpx">
+                            <navigator url="/pages/goods/goods?id={{item.id}}" open-type="navigate"
+                                       wx:for="{{goods_list}}"
+                                       class="goods-item">
+                                <image class="goods-pic" src="{{item.pic_url}}" mode="aspectFill"/>
+                                <view class="goods-info">
+                                    <text class="goods-name">{{item.name}}</text>
+                                    <text class="goods-price">￥{{item.price}}</text>
+                                </view>
+                            </navigator>
+                        </view>
+                        <view class="loading-more-bar {{loading_more_active}}">
+                            <image src="/images/loading-black.svg" style="width: 48rpx;height: 48rpx"/>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+    </view>
+</view>

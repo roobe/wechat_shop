@@ -1,0 +1,58 @@
+<!--pages/coupon-list/coupon-list.wxml-->
+<view class='info' style='background-color:#f0f0f0'>
+  <view class='info-list' style='width:100%;'>
+    <block wx:for='{{coupon_list}}' wx:for-item="item" wx:for-index="index">
+      <view class='info-content' wx:if='{{item.discount_type == 2}}'>
+        <image src='/images/icon-sub.png'></image>
+        <view class='content'>
+        <view class='flex-y-center' style='width:100%;height:50rpx;'>
+          <text style='color:#fff;margin-left:20rpx;font-size:9pt'>满减券</text>
+        </view>
+          <view class='content-body flex-y-center'>
+            <view class='price_1 flex-y-bottom'>
+              <text>￥</text>
+              <text style='font-size:24pt;margin-left:12rpx;'>{{item.sub_price}}</text>
+            </view>
+            <view class='price_2'>
+              <text style='margin-left:25rpx;'>满{{item.min_price}}元可用</text>
+            </view>
+            <view class='btn sub flex-x-center' wx:if='{{item.is_receive == 0}}' bindtap='receive' data-index='{{item.id}}'>立即领取</view>
+            <view class='btn flex-x-center' style='background-color:#a5a5a5' wx:elif='{{item.is_receive == 1}}'>已领取</view>
+          </view>
+          <view class='content-footer flex-y-center'>
+            <text wx:if='{{item.expire_type == 2}}'>有效日期：{{item.begintime}}-{{item.endtime}}</text>
+            <text wx:if='{{item.expire_type == 1}}'>领取{{item.expire_day}}天内有效</text>
+          </view>
+        </view>
+      </view>
+      <view class='info-content' wx:elif='{{item.discount_type == 1}}'>
+        <image src='/images/icon-discount.png'></image>
+        <view class='content'>
+        <view class='flex-y-center' style='width:100%;height:50rpx;'>
+          <text style='color:#fff;margin-left:20rpx;font-size:9pt'>打折券</text>
+        </view>
+          <view class='content-body flex-y-center'>
+            <view class='price_1 flex-y-bottom'>
+              <text style='font-size:24pt;margin-left:12rpx;'>{{item.discount}}</text>
+              <text>折</text>
+            </view>
+            <view class='price_2'>
+              <text style='margin-left:10rpx;'>满{{item.min_price}}元可用</text>
+            </view>
+            <view class='btn flex-x-center' style='background-color:#00a0e9' wx:if='{{item.is_receive == 0}}' bindtap='receive' data-index='{{item.id}}'>立即领取</view>
+            <view class='btn flex-x-center' style='background-color:#a5a5a5' wx:if='{{item.is_receive == 1}}'>已领取</view>
+          </view>
+          <view class='content-footer flex-y-center'>
+            <text wx:if='{{item.expire_type == 2}}'>有效日期：{{item.begintime}}-{{item.endtime}}</text>
+            <text wx:if='{{item.expire_type == 1}}'>领取{{item.expire_day}}天内有效</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='flex-x-center' wx:if='{{coupon_list.length<=0}}'>
+    <text style='margin-top:50rpx;'>暂无优惠券</text>
+  </view>
+</view>
+
+<include src="/commons/get-coupon/get-coupon.wxml"/>

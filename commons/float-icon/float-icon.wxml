@@ -1,0 +1,27 @@
+<!--
+<movable-area style="height: {{y*2}}rpx;width: {{x*2}}rpx;position:fixed;top:0;left:0;pointer-events:none">
+=======
+<movable-area style="height: {{y}}px;width: {{x}}px;position:fixed;top:0;left:0;pointer-events:none">
+>>>>>>> Stashed changes
+  <movable-view direction="all" class="float-icon" style='width:100rpx;height:100rpx;pointer-events:all;' x='{{x-60}}' y='{{y-60}}'>
+    <button open-type="contact" class="float-icon-btn" style='width:100%;height:100%;'>
+      <image src="/images/icon-service.png" style='width:100%;height:100%;'></image>
+    </button>
+  </movable-view>
+</movable-area>
+-->
+<view direction="all" class="float-icon">
+    <block wx:if='{{store.dial == 1}}'>
+        <view class='dial' bindtap='to_dial' style="background-image:url('{{store.dial_pic}}'); background-size: 100rpx 100rpx;" />
+    </block>
+    <block wx:if='{{store.option.web_service}}'>
+        <navigator url="/pages/web/web?url={{store.option.web_service_url}}" open-type="navigate" hover-class='none'>
+            <image class='dial' src="{{store.option.web_service}}"></image>
+        </navigator>
+    </block>
+    <block wx:if="{{store.show_customer_service && store.show_customer_service==1}}">
+        <button open-type="contact" session-from="{{_user_info.nickname}}|" class="float-icon-btn">
+            <image src="{{store.service}}"></image>
+        </button>
+    </block>
+</view>

@@ -1,0 +1,84 @@
+<include src="/commons/navbar/navbar"/>
+<view class="after-navber">
+    <view class="top-bar">
+        <scroll-view scroll-x="true" scroll-left="{{top_bar_scroll}}">
+            <view class="flex-row start-time-list">
+                <view class="flex-grow-0 flex-y-center start-time-item {{item.active?'active':''}}"
+                      wx:for="{{time_list}}" data-index="{{index}}" bindtap="topBarItemClick">
+                    <view>
+                        <view class="start-time">{{item.title}}</view>
+                        <view class="start-status">{{item.status_text}}</view>
+                    </view>
+                    <view wx:if="{{item.active}}" class="start-time-item-icon"></view>
+                </view>
+            </view>
+        </scroll-view>
+        <view wx:if="{{time_list}}" class="flex-row time-over-bar">
+            <view class="flex-grow-1 flex-y-center" style="color: #ff4544">限时限量 先到先得</view>
+            <view wx:for="{{time_list}}" wx:if="{{item.active}}" class="flex-grow-0 flex-y-center" style="color: #888">
+                <block wx:if="{{item.status==0}}">
+                    <text>本场秒杀已结束</text>
+                </block>
+                <block wx:if="{{item.status==1}}">
+                    <text>距离本场结束</text>
+                    <text style="color: #666;margin-left: 10rpx">{{item.end_time_over}}</text>
+                </block>
+                <block wx:if="{{item.status==2}}">
+                    <text>距离本场开始</text>
+                    <text style="color: #666;margin-left: 10rpx">{{item.begin_time_over}}</text>
+                </block>
+            </view>
+        </view>
+    </view>
+
+    <view wx:if="{{goods_list===null}}" class="goods-loading" style="padding-top: 320rpx;text-align: center">
+        <image src="/images/loading2.svg" style="width: 120rpx;height: 120rpx"></image>
+    </view>
+    <view wx:else class="goods-list">
+        <view class="item flex-row" wx:for="{{goods_list}}">
+            <view class="flex-grow-0" style="padding: 12rpx 0">
+                <image class="cover-pic" src="{{item.cover_pic}}" mode="aspectFill"></image>
+            </view>
+            <view class="flex-grow-1" style="padding: 28rpx 24rpx">
+                <view class="goods-name">{{item.name}}</view>
+                <view class="progress-bar">
+                    <view class="progress" style="width: {{item.sell_num*100/item.miaosha_num}}%"></view>
+                </view>
+                <view class="flex-row statue-text">
+                    <block wx:if="{{item.sell_num < item.miaosha_num}}">
+                        <view class="flex-grow-1">已抢购{{item.sell_num}}件</view>
+                        <view class="flex-grow-0" style="color: #ff4544">仅剩{{item.miaosha_num-item.sell_num}}件</view>
+                    </block>
+                    <block wx:else>
+                        <view class="flex-grow-1">{{item.miaosha_num}}件已抢完</view>
+                    </block>
+                </view>
+                <view class="flex-row">
+                    <view class="flex-grow-1">
+                        <view class="miaosha-price">￥{{item.miaosha_price}}</view>
+                        <view class="price">￥{{item.price}}</view>
+                    </view>
+                    <view class="flex-grow-0 flex-y-bottom">
+                        <block wx:if="{{item.status==0}}">
+                            <navigator url="/pages/miaosha/details/details?id={{item.id}}" class="btn">查看商品</navigator>
+                        </block>
+                        <block wx:if="{{item.status==1}}">
+                            <block wx:if="{{item.sell_num < item.miaosha_num}}">
+                                <navigator url="/pages/miaosha/details/details?id={{item.id}}" class="btn btn-buy">马上抢购</navigator>
+                            </block>
+                            <block wx:else>
+                                <navigator url="/pages/miaosha/details/details?id={{item.id}}" class="btn">查看商品</navigator>
+                            </block>
+                        </block>
+                        <block wx:if="{{item.status==2}}">
+                            <navigator url="/pages/miaosha/details/details?id={{item.id}}" class="btn">查看商品</navigator>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="load-more-bar {{loading_more?'active':''}}">
+        <image src="/images/loading.svg"></image>
+    </view>
+</view>

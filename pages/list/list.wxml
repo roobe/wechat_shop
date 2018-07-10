@@ -1,0 +1,71 @@
+<include src="/commons/navbar/navbar" />
+<view class="after-navber">
+    <view class="top-bar">
+        <view wx:if="{{false}}">
+            <view class="cat-list">
+                <scroll-view scroll-x="true">
+                    <view class="list-content">
+                        <view class="cat-item" bindtap="allClick">
+                            <text class="flex-y-center">全部</text>
+                        </view>
+                        <view class="cat-item {{item.checked?'active':''}}" wx:for="{{cat_list}}" bindtap="catClick" data-index="{{index}}">
+                            <text class="flex-y-center">{{item.name}}</text>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="sub-cat-list" wx:for="{{cat_list}}" wx:for-index="parentIndex" wx:if="{{item.checked && item.list.length>0}}">
+                <scroll-view scroll-x="true">
+                    <view class="list-content">
+                        <view class="cat-item {{item.checked?'active':''}}" wx:for="{{item.list}}" bindtap="subCatClick" data-parent-index="{{parentIndex}}" data-index="{{index}}">
+                            <text class="flex-y-center">{{item.name}}</text>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="flex-row sort-bar">
+            <view bindtap="sortClick" data-sort="0" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==0 ? 'active':''}}">综合
+            </view>
+
+            <view bindtap="sortClick" data-sort="1" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==1 ? 'active':''}}">最新
+            </view>
+
+            <view bindtap="sortClick" data-sort="2" data-default_sort_type="0" class="flex-grow-1 flex-x-center flex-row sort-item {{sort==2 ? 'active':''}}">
+                <view class="flex-y-center">价格</view>
+                <view class="flex-y-center sort-icon-box">
+                    <view>
+                        <view>
+                            <image wx:if="{{sort==2 && sort_type==0}}" class="sort-icon-up" src="/images/icon-sort-up-active.png"></image>
+                            <image wx:else="{{sort==2 && sort_type==0}}" class="sort-icon-up" src="/images/icon-sort-up.png"></image>
+                        </view>
+                        <view>
+                            <image wx:if="{{sort==2 && sort_type==1}}" class="sort-icon-up" src="/images/icon-sort-down-active.png"></image>
+                            <image wx:else="{{sort==2 && sort_type==1}}" class="sort-icon-up" src="/images/icon-sort-down.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view bindtap="sortClick" data-sort="3" class="flex-grow-1 flex-x-center flex-y-center sort-item {{sort==3 ? 'active':''}}">销量
+            </view>
+
+        </view>
+    </view>
+    <view class="goods-list">
+        <view wx:if="{{show_no_data_tip}}" class="no-data-tip">该类目暂无内容</view>
+        <navigator url="/pages/goods/goods?id={{item.id}}" open-type="navigate" wx:for="{{goods_list}}" class="goods-item" style='font-size:11pt;'>
+            <image class="goods-pic" src="{{item.pic_url}}" mode="aspectFill" />
+            <view class="goods-info" style='padding:5rpx 20rpx;'>
+                <text class="mb-10 text-more-2" style='height:2.8em;line-height:1.4;'>{{item.name}}</text>
+                <view class='flex-row'>
+                    <view class='flex-grow-1' style='color:#ff334b'>￥{{item.price}}</view>
+                    <view class='flex-grow-0 fs-sm' style='color:#999;'>已售{{item.sales}}</view>
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="loading-bar {{show_loading_bar?'active':''}}" style="text-align: center">
+        <image style="width: 160rpx;height: 80rpx" src="/images/loading.svg"></image>
+    </view>
+</view>

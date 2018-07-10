@@ -1,0 +1,441 @@
+/**app.wxss**/
+
+@import "/area-picker/area-picker.wxss";
+@import "/commons/extension/extension.wxss";
+
+page {
+    height: 100%;
+    font-size: 11pt;
+    color: #555;
+    background: #EFEFF4;
+    overflow-x: hidden;
+}
+
+page,
+block,
+view,
+scroll-view,
+swiper,
+movable-view,
+icon,
+text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+picker,
+picker-view,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+image,
+video,
+map,
+canvas,
+contact-button {
+    box-sizing: border-box;
+}
+button{
+    font-size: 11pt;
+    font-family: inherit;
+}
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.flex-col{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-grow-0{
+    min-width: 0;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.flex-grow-1{
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.flex-x-center{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.flex-y-center{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+.flex-y-bottom{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    -ms-grid-row-align: flex-end;
+    align-items: flex-end;
+}
+
+
+
+.spinner {
+    margin: 0 auto;
+    width: 100rpx;
+    height: 50rpx;
+    text-align: center;
+    font-size: 10rpx;
+}
+
+.spinner > view {
+    background-color: #8c949a;
+    height: 100%;
+    width: 10rpx;
+    display: inline-block;
+    margin: 0 2rpx;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    animation-delay: -0.8s;
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
+
+.copy-text-btn{
+    line-height: normal;
+    height: auto;
+    display: inline-block;
+    font-size: 9pt;
+    color: #888;
+    border: 1rpx solid #ddd;
+    border-radius: 5rpx;
+    padding: 6rpx 12rpx;
+    background-color: #fff !important;
+    box-shadow: none;
+}
+
+.no-data-tip{
+    padding: 150rpx 0;
+    text-align: center;
+    color: #888;
+}
+
+.no-data-tip .no-data-icon{
+    width: 160rpx;
+    height: 160rpx;
+    font-size: 0;
+    border-radius: 9999rpx;
+    background: rgba(0,0,0,.1);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 32rpx;
+}
+
+.bg-white{
+    background-color: #fff;
+}
+
+.mb-20{
+    margin-bottom: 20rpx;
+}
+
+.mb-10{
+    margin-bottom: 10rpx;
+}
+
+button[plain]{
+    border: none;
+    background: #fff;
+    color: inherit;
+}
+
+.nowrap{
+    white-space: nowrap;
+}
+
+.fs-0{
+    font-size: 0;
+}
+
+.get-coupon{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.75);
+    z-index: 999;
+}
+.get-coupon .get-coupon-box{
+    position: relative;
+    width: 100%;
+}
+
+.get-coupon .get-coupon-bg{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top:-210rpx;
+    z-index: -1;
+}
+
+.get-coupon .coupon-list{
+    height: 330rpx;
+    width: 550rpx;
+    margin: 0 auto;
+}
+
+.get-coupon .coupon-item{
+    width: 520rpx;
+    height: 264rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+    color: #fff;
+    padding: 0 40rpx;
+}
+
+
+.get-coupon .coupon-item image{
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top:0;
+    width: 100%;
+}
+
+.get-coupon .coupon-item:last-child{
+    margin-bottom: 0;
+}
+
+.get-coupon .use-now{
+    display: block;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #ff4544;
+    background: #fff;
+    border-radius: 6rpx;
+    margin: 15rpx 0;
+    font-size: 9pt;
+}
+
+.fs-sm{
+    font-size: 9pt;
+}
+
+.p-10{
+    padding: 10rpx 10rpx;
+}
+
+.px-24{
+    padding-left: 24rpx;
+    padding-right: 24rpx;
+}
+
+.float-icon{
+    position: fixed;
+    z-index: 20;
+    right: 50rpx;
+    bottom: 50rpx;
+}
+
+.bar-bottom~.float-icon{
+    bottom: 150rpx;
+}
+
+.float-icon .float-icon-btn{
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+.float-icon .float-icon-btn:after{
+    display: none;
+}
+
+.float-icon .float-icon-btn:active{
+    opacity: .75;
+}
+
+.float-icon .float-icon-btn image{
+    width: 100rpx;
+    height: 100rpx;
+    display: block;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.h-100{
+    height: 100%;
+}
+
+.wh-100{
+    width: 100%;
+    height: 100%;
+}
+.text-more{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.navbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 115rpx;
+    background: #fff;
+    color: #555;
+    z-index: 2000;
+    border-top: 1rpx solid rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+
+.navbar navigator{
+    height: 100%;
+    width: 1%;
+}
+
+.navbar navigator > view{
+    width: 100%;
+    padding-top: 4px;
+}
+
+.navbar .navbar-icon{
+    width: 64rpx;
+    height: 64rpx;
+    display: block;
+    margin: 0 auto;
+}
+
+.navbar .navbar-text{
+    font-size: 8pt;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.navbar + .after-navber{
+    padding-bottom: 115rpx;
+}
+
+.navbar ~ .float-icon,
+.navbar + .after-navber .float-icon {
+    bottom: 170rpx !important;
+}
+
+.hidden{
+    display: none;
+}
+
+.text-more-2 {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.no-scroll {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+
+.dial {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+    display: block;
+    margin-bottom: 32rpx;
+}
+
+.navbar button{
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    margin: 0;
+    width: 100%;
+    line-height: 1.25;
+}
+
+.navbar button::after{
+    display: none;
+}

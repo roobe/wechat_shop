@@ -1,0 +1,302 @@
+<include src="/commons/navbar/navbar" />
+<view class="quick_purchase">
+  <!-- 分类开始  -->
+  <view class="left_nav">
+    <block wx:if="{{quick_list}}" wx:key="id">
+      <scroll-view scroll-y="true" style="height: 100%;width:100%"> 
+        <view class="cat_name {{cat_checked?'cat_name_active':''}}" data-tag="hot_cakes" bindtap="selectMenu" >
+          <image src='/images/quick-hot.png' class="quick-hot"></image>
+          <view style="float:left; height:30px;display:flex;align-items:center;justify-content:center;" >热销</view>
+        </view> 
+        <block wx:for="{{quick_list}}">
+            <view class="cat_name {{item.cat_checked?'cat_name_active':''}}" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" data-id="{{quick_list.id}}" data-tag="{{'aa'+index}}" bindtap="selectMenu" data-index="{{index}}">{{item.name}}</view>
+        </block>
+      </scroll-view> 
+    </block>
+  </view>  
+   
+  <!--商品开始  -->
+<view class="r_goods">
+  <block wx:if="{{quick_hot_goods_lists}}">
+    <scroll-view scroll-y="true" style="height: 100%;padding: 10rpx"  scroll-into-view="{{toView}}">
+    <!-- 热销商品开始  -->
+      <view class="navname" id="hot_cakes">热销</view> 
+        <block wx:for="{{quick_hot_goods_lists}}" wx:key="id" wx:for-item="goods">  
+            <view class="goodsall">  
+               
+                <view class="goods" data-id="{{goods.id}}">
+                  <view class="goods_pic">
+                    <image src="{{goods.cover_pic}}" id="goods_pic" lazy-load="true"></image>
+                  </view> 
+                  <view class="goods_info">
+                    <view class="goods_name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{goods.name}}</view>
+                    <view style="font-size:24rpx;color:#666666;margin-top:14rpx;">销量 {{goods.virtual_sales}}</view>
+                    <view style="font-size:16px;color:#ff4544;margin-top:22rpx;width:63%;">￥{{goods.price}}</view>
+                  </view> 
+                </view>
+
+              <!-- 无规格开始 -->
+                <block wx:if="{{goods.use_attr == 0}}">
+                <view class="purchase">
+                   <view id="jia" class="standard" bindtap="jia" data-index="{{index}}" data-id="{{goods.id}}" data-cid="{{goods_list.id}}"> 
+                      <image src="/images/jia.png" class="standard" style="width:100%;"></image>   
+                  </view>  
+                    <block wx:if="{{goods.num > 0}}">    
+                      <view class="standard" id="num">{{goods.num}}</view>  
+                      <view class="standard" id="jian"  bindtap="jian" data-id="{{goods.id}}" data-cid="{{goods_list.id}}" data-index="{{index}}">
+                          <image src="/images/jian.png" class="standard"></image>   
+                      </view> 
+                    </block>       
+                </view> 
+              </block>  
+              <!-- 无规格结束 -->
+              <!-- 规格商品开始 -->
+                <block wx:if="{{goods.use_attr == 1}}">
+                  <view class="guigepurchase" bindtap="showDialogBtn" data-num="{{goods.num}}" data-price="{{goods.price}}" data-index="{{index}}" data-id="{{goods.id}}">选规格 <view wx:if="{{goods.num > 0}}" class="guigenum">{{goods.num}}</view> </view>
+
+              </block>                
+              <!-- 规格商品结束 -->
+            </view>  
+        </block> 
+    <!-- 热销商品结束  -->
+       <block wx:for="{{quick_list}}" wx:key="id" wx:for-item="goods_list">
+        <view class="navname" id="{{'aa'+index}}">{{goods_list.name}}</view> 
+        <block wx:for="{{goods_list.goods}}" wx:key="id" wx:for-item="goods">  
+          <view class="goodsall">
+              <view class="goods">
+                <view class="goods_pic">
+                  <image src="{{goods.cover_pic}}" id="goods_pic"></image>
+                </view>  
+                <view class="goods_info">
+                  <view class="goods_name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{goods.name}}</view>
+                  <view style="font-size:24rpx;color:#666666;margin-top:14rpx;">销量 {{goods.virtual_sales}}</view>
+                  <view style="font-size:16px;color:#ff4544;margin-top:22rpx;width:63%;">￥{{goods.price}}</view>
+                </view> 
+              </view>
+            <!-- 无规格开始 -->
+            <block wx:if="{{goods.use_attr == 0}}">
+              <view class="purchase">
+                  <view class="standard" id="jia" bindtap="jia" data-index="{{index}}" data-id="{{goods.id}}" data-cid="{{goods_list.id}}">
+                  <image src="/images/jia.png" class="standard" lazy-load="true"></image> 
+                  </view>  
+
+                  <block wx:if="{{goods.num > 0}}">    
+                    <view class="standard" id="num">{{goods.num}}</view>     
+                    <view class="standard" id="jian" bindtap="jian" data-id="{{goods.id}}" data-cid="{{goods_list.id}}" data-index="{{index}}">
+                      <image src="/images/jian.png" class="standard"></image> 
+                    </view> 
+                  </block>      
+              </view> 
+            </block>
+            <!-- 无规格结束 -->
+            <!-- 规格商品开始 -->
+            <block wx:if="{{goods.use_attr == 1}}">
+                <view class="guigepurchase" id="guige" bindtap="showDialogBtn" data-index="{{index}}" data-id="{{goods.id}}" data-cid="{{goods_list.id}}">选规格 <view wx:if="{{goods.num > 0}}" class="guigenum">{{goods.num}}</view> </view>
+            </block>              
+            <!-- 规格商品结束 -->
+          </view>  
+        </block> 
+      </block> 
+
+    </scroll-view>
+  </block>
+</view>
+<!-- 商品结束 -->
+
+
+  <!--购物车开始  -->
+    <view id="goods_car">
+      <block wx:if="{{total.total_num == 0}}">
+        <view class="buy">
+          <view class="car_pic">
+            <image class="car_png" src="/images/car.png"></image>
+          </view>
+          <view class="weixuan">未选购商品</view> 
+        </view>
+        <view class="goumai">立即购买</view>
+      </block>
+      <block wx:if="{{total.total_num > 0}}">
+        <view class="buy" bindtap="goodsModel">
+          <view class="car_pic">
+            <image class="car_png" src="/images/yougoods.jpg"></image>
+            <view class="total_num">{{total.total_num}}</view>
+          </view>
+          <view class="price">￥{{total.total_price}}</view> 
+        </view>
+        <view class="pay" bindtap='buynow'>立即购买</view>
+      </block>
+
+
+
+
+
+    </view>  
+<!--弹窗  -->
+<block wx:if="{{_navbar}}">
+    <view wx:if="{{goodsModel}}" class="carGoods" style="position:absolute;bottom:20%;width: 100%;z-index:3333;background: #f9f9f9;">
+    <view class="carHeader">
+        <view class="yixuan">已选商品</view>
+        <view class="clearAll"  bindtap='clearCar'>
+        <image src="/images/clear.png" style="width:22rpx; height:22rpx;margin-right:10rpx; "></image>
+        <text style="font-size:27rpx;color:#BDBDBD;">清空</text>
+        </view>
+    </view>
+    <view class="hr"></view>
+        <scroll-view scroll-y="true" style="max-height: 500rpx;width:100%">
+        <block wx:for="{{carGoods}}" wx:for-item="cargood">
+            <block wx:if="{{cargood.attr == ''}}">
+            <block wx:if="{{cargood.num > 0}}">
+                <view class="carGood">
+                    <view class="goodsname" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{cargood.goods_name}}</view> 
+                    <view class="goodsNumPrice">
+                    <view class="goodsTotalPrice" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">￥{{cargood.goods_price}}</view>
+                    <view class="goodsNum">
+                        <view class="carStandard" bindtap='tianjia' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                        <image src="/images/jia.png" class="carStandard"></image>
+                        </view>
+                        <view class="carStandard" id="carStandard_num">{{cargood.num}}</view>   
+                        <view class="carStandard" bindtap='jianshao' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                        <image src="/images/jian.png" class="carStandard"></image>
+                        </view>   
+                    </view>
+                    </view> 
+                </view>
+            </block> 
+            </block>
+            <block wx:else>
+            <block wx:if="{{cargood.num > 0}}">
+                <view class="carGood">
+                <view class="goods_attr_name">
+                    <view class="cargood_name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{cargood.goods_name}}</view>
+                    <view class="cargood_attr_name"  style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;float:left;">
+                        <text  wx:for="{{cargood.attr}}">{{item.attr_group_name}}:{{item.attr_name}}</text>
+                    </view>  
+                </view> 
+                <view class="goodsNumPrice">
+                    <view class="goodsTotalPrice">￥{{cargood.goods_price}}</view>
+                    <view class="goodsNum">
+                    <view class="carStandard" bindtap='tianjia' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                        <image src="/images/jia.png" class="carStandard"></image>
+                    </view>
+                    <view class="carStandard" id="carStandard_num">{{cargood.num}}</view>   
+                    <view class="carStandard" bindtap='jianshao' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                        <image src="/images/jian.png" class="carStandard"></image>
+                    </view>   
+                    </view>
+                </view> 
+                </view>
+            </block>       
+            </block>
+        </block>
+        </scroll-view>
+    </view>
+</block>
+
+<block wx:else>
+    <view wx:if="{{goodsModel}}" class="carGoods" style="position:absolute;bottom:10%;width: 100%;z-index:3333;background: #f9f9f9;">
+    <view class="carHeader">
+    <view class="yixuan">已选商品</view>
+    <view class="clearAll"  bindtap='clearCar'>
+        <image src="/images/clear.png" style="width:22rpx; height:22rpx;margin-right:10rpx; "></image>
+        <text style="font-size:27rpx;color:#BDBDBD;">清空</text>
+    </view>
+    </view>
+    <view class="hr"></view>
+    <scroll-view scroll-y="true" style="max-height: 500rpx;width:100%">
+    <block wx:for="{{carGoods}}" wx:for-item="cargood">
+        <block wx:if="{{cargood.attr == ''}}">
+        <block wx:if="{{cargood.num > 0}}">
+            <view class="carGood">
+                <view class="goodsname" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{cargood.goods_name}}</view> 
+                <view class="goodsNumPrice">
+                <view class="goodsTotalPrice" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">￥{{cargood.goods_price}}</view>
+                <view class="goodsNum">
+                    <view class="carStandard" bindtap='tianjia' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                    <image src="/images/jia.png" class="carStandard"></image>
+                    </view>
+                    <view class="carStandard" id="carStandard_num">{{cargood.num}}</view>   
+                    <view class="carStandard" bindtap='jianshao' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                    <image src="/images/jian.png" class="carStandard"></image>
+                    </view>   
+                </view>
+                </view> 
+            </view>
+        </block> 
+        </block>
+        <block wx:else>
+        <block wx:if="{{cargood.num > 0}}">
+            <view class="carGood">
+            <view class="goods_attr_name">
+                <view class="cargood_name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{cargood.goods_name}}</view>
+                <view class="cargood_attr_name"  style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;float:left;">
+                    <text  wx:for="{{cargood.attr}}">{{item.attr_group_name}}:{{item.attr_name}}</text>
+                </view>  
+            </view> 
+            <view class="goodsNumPrice">
+                <view class="goodsTotalPrice">￥{{cargood.goods_price}}</view>
+                <view class="goodsNum">
+                <view class="carStandard" bindtap='tianjia' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                    <image src="/images/jia.png" class="carStandard"></image>
+                </view>
+                <view class="carStandard" id="carStandard_num">{{cargood.num}}</view>   
+                <view class="carStandard" bindtap='jianshao' data-index="{{index}}" data-id="{{cargood.goods_id}}" data-price="{{cargood.price}}" >
+                    <image src="/images/jian.png" class="carStandard"></image>
+                </view>   
+                </view>
+            </view> 
+            </view>
+        </block>       
+        </block>
+    </block>
+    </scroll-view>
+    </view> 
+</block>
+<view class="modal-mask" bindtap="hideGoodsModel" catchtouchmove="preventTouchMove" wx:if="{{goodsModel}}"></view>
+
+
+
+
+
+<!--规格弹窗-->
+  <view id="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+
+    <view bindtap='close'>
+      <image src="/images/icon-close3.png" class="close3"></image>
+    </view>
+    <view class="modal-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{goods_name}}</view>
+    <scroll-view scroll-y="true" style="height: 100%;">
+       <view class="modal-content">
+        <view>
+            <view class="attr-group" wx:for="{{attr_group_list}}" wx:for-item="attr_group"
+                  wx:if="{{attr_group.attr_list.length>0}}">
+                <view class="attr-group-name" >{{attr_group.attr_group_name}} :</view>
+                <view class="attr-list">
+                  <block wx:for="{{attr_group.attr_list}}">
+                    <text class="attr_name {{item.checked?'active':''}}" data-group-id="{{attr_group.attr_group_id}}" data-id="{{item.attr_id}}" bindtap="attrClick">{{item.attr_name}}</text> 
+                  </block>
+                </view>
+            </view>
+        </view>     
+      </view> 
+    </scroll-view>
+      <view class="modal-footer">
+          <block wx:if="{{check_goods_price}}">
+            <view class="guigeprice">￥{{check_goods_price}}</view>
+          </block>
+          <block wx:else>
+            <view class="guigeprice">￥{{goods.price}}</view>  
+          </block>
+          <block wx:if="{{check_num}}">
+            <view class="btn-car_num">
+              <image class="carStandard" src="/images/jian.png" bindtap="guigejian" ></image>
+              <text class="carStandard">{{check_num}}</text>
+              <image class="carStandard" src="/images/jia.png" bindtap="onConfirm"></image>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="btn-car" style="background:#FF4544;color:#FFFFFF;" bindtap="onConfirm" data-status="confirm">加入购物车</view>
+          </block>
+      </view> 
+  </view>
+</view> 

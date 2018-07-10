@@ -1,0 +1,76 @@
+<include src="/commons/navbar/navbar" />
+<view class="after-navber">
+<view class="info">
+  <view class="info-title flex-row">
+    <view class="flex-y-center">
+      <image class="info-img" src="{{user_info.avatar_url}}"></image>
+    </view>
+    <view class="info-block">
+      <view class="info-up info-blod">{{user_info.nickname}}</view>
+      <view class="info-bottom">推荐人：{{user_info.parent}}</view>
+    </view>
+  </view>
+  <view class="info-content flex-row">
+    <view class="info-left">
+      <view class="info-label">
+        <view class="info-first">可提现佣金</view>
+        <view class="info-second info-blod info-big flex-row">{{price}}元</view>
+      </view>
+      <view class="info-label">
+        <view class="info-first">成功提现佣金</view>
+        <view class="info-second info-blod info-big flex-row">{{cash_price}}元</view>
+      </view>
+    </view>
+    <view class="info-right">
+      <navigator open-type="navigate" class="" url="/pages/cash/cash">
+          <view class="info-btn">提现</view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<view class="list flex-row">
+  <navigator class="item border-bottom" url="/pages/share-money/share-money">
+    <view class="list-img flex-x-center">
+      <image class="img" src="/images/img-share-price.png"></image>
+    </view>
+    <view class="flex-x-center list-content">分销佣金</view>
+    <view class="flex-x-center list-content">
+      <view class="list-red">{{total_price}}</view>元</view>
+  </navigator>
+  <navigator class="item border-bottom border-between" url="/pages/share-order/share-order">
+    <view class="list-img flex-x-center">
+      <image class="img" src="/images/img-share-order.png"></image>
+    </view>
+    <view class="flex-x-center list-content">分销订单</view>
+    <view class="flex-x-center list-content">
+      <view class="list-red">{{order_money}}</view>元</view>
+  </navigator>
+  <navigator class="item border-bottom" url="/pages/cash-detail/cash-detail">
+    <view class="list-img flex-x-center">
+      <image class="img" src="/images/img-share-cash.png"></image>
+    </view>
+    <view class="flex-x-center list-content">提现明细</view>
+    <view class="flex-x-center list-content">
+      <view class="list-red">{{total_cash}}</view>元</view>
+  </navigator>
+</view>
+<view class="list flex-row">
+
+  <navigator class="item border-bottom" url="/pages/share-team/share-team">
+    <view class="list-img flex-x-center">
+      <image class="img" src="/images/img-share-team.png"></image>
+    </view>
+    <view class="flex-x-center list-content">我的团队</view>
+    <view class="flex-x-center list-content">
+      <view class="list-red">{{team_count}}</view>人</view>
+  </navigator>
+  <navigator class="item border-bottom border-between" url="/pages/share-qrcode/share-qrcode">
+    <view class="list-img flex-x-center">
+      <image class="img" src="/images/img-share-qrcode.png"></image>
+    </view>
+    <view class="flex-x-center list-content">推广二维码</view>
+  </navigator>
+  <view class="item border-bottom">
+  </view>
+</view>
+</view>

@@ -1,0 +1,8 @@
+<!-- 加载公共扩展 -->
+<include src="/commons/extension/extension"/>
+<!-- 加载底部导航栏（按需） -->
+<include src="/commons/navbar/navbar"/>
+<view class="after-navber">
+    <!-- 页面内容 -->
+    <text>示例页面</text>
+</view>

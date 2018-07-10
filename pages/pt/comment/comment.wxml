@@ -1,0 +1,38 @@
+<!--pages/pt/comment/comment.wxml-->
+<!--     商品评论     -->
+<view class='goods-comment'>
+    <!-- <view  class='goods-comment-title flex-row flex-y-center' bindtap='goToComment'>
+            <view class='comment-left-text flex-grow-1'>
+                买家评论{{comment_num}} | 销量 {{goods.virtual_sales}}
+            </view>
+            <view class='comment-more flex-grow-0'>
+                <image src='/images/img-share-right.png'></image>
+            </view>
+    </view> -->
+    <view class='goods-comment-item flex-col' wx:for='{{comment}}' wx:for-index='ckey'>
+            <view class='goods-comment-user flex-grow-0 flex-row flex-y-center'>
+                <view class='comment-user-pic flex-grow-0'>
+                    <image src='{{item.avatar_url}}'></image>
+                </view>
+                <view class='comment-user-name flex-grow-0'>
+                    {{item.nickname}}
+                </view>
+            </view>
+            <view class='goods-comment-conent flex-grow-1'>
+                {{item.content}}
+            </view>
+            <view class='goods-comment-ginfo'>
+                    {{item.addtime}}
+                    <block wx:for='{{item.attr}}' wx:for-item="attr">
+                        {{attr.attr_group_name}}:{{attr.attr_name}}
+                    </block>
+            </view>
+            <view class='goods-comment-piclist'>
+                <block wx:for='{{item.pic_list}}' wx:for-item="pic" >
+                    <view class='comment-pic-shell'>
+                        <image bindtap='bigToImage' data-url='{{pic}}' data-index='{{ckey}}' src='{{pic}}'></image>
+                    </view>
+                </block>
+            </view>
+    </view>
+</view>

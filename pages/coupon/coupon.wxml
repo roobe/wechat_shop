@@ -1,0 +1,40 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="top-bar flex-row">
+    <navigator open-type="redirect" url="/pages/coupon/coupon?status=0" class="flex-grow-1 {{status==0?'active':''}}">
+        <text>未使用</text>
+    </navigator>
+    <navigator open-type="redirect" url="/pages/coupon/coupon?status=1" class="flex-grow-1 {{status==1?'active':''}}">
+        <text>已使用</text>
+    </navigator>
+    <navigator open-type="redirect" url="/pages/coupon/coupon?status=2" class="flex-grow-1 {{status==2?'active':''}}">
+        <text>已过期</text>
+    </navigator>
+</view>
+<view wx:if="{{list&&list.length>0}}" class="coupon-list">
+    <view class="coupon-item coupon-status-{{item.status}}" wx:for="{{list}}">
+        <image class="coupon-bg" src="/images/img-coupon-bg-{{item.status==0?0:1}}.png"></image>
+        <image wx:if="{{item.status!=0}}" class="coupon-status-icon"
+               src="/images/img-coupon-status-icon-{{item.status}}.png"></image>
+        <view class="flex-row" style="height: 100%;overflow: hidden">
+            <view class="flex-grow-0 flex-col flex-y-center flex-x-center coupon-left">
+                <view class="flex-row flex-y-bottom">
+                    <view style="font-size: 9pt">￥</view>
+                    <view style="font-size: {{item.sub_price.length>4?'13':'19'}}pt;line-height: .9">
+                        {{item.sub_price}}
+                    </view>
+                </view>
+                <view style="font-size: 8pt;margin-top: 10rpx">{{item.min_price_desc}}</view>
+            </view>
+            <view class="flex-grow-1 flex-y-center coupon-right">
+                <view style="width: 100%">
+                    <view class="flex-row flex-y-center mb-10">
+                        <view class="flex-grow-1" style="font-size: 13pt;font-weight: bold">{{item.event_desc}}</view>
+                        <view class="flex-grow-0" style="font-size: 9pt"></view>
+                    </view>
+                    <view style="font-size: 8pt;color: #888">{{item.begin_time}} ~ {{item.end_time}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:else style="padding-top: 200rpx;color: #888;text-align: center">暂无相关优惠券</view>

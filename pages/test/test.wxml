@@ -1,0 +1,36 @@
+<!--pages/test/test.wxml-->
+<view class="flex-row">
+    <view class="flex-grow-0 flex-y-center" style="background: #9de6a8">
+        <view style="width: 200rpx;height: 200rpx;display: inline-block;background: #333;color: #fff">200×200</view>
+    </view>
+    <view class="flex-grow-1 flex-y-center flex-x-center" style="background: #e9e7b0">
+        <view style="width: 400rpx;height: 400rpx;display: inline-block;background: #333;color: #fff">400×400</view>
+    </view>
+    <view class="flex-grow-0 flex-y-bottom" style="background: #d6bbe6">
+        <view style="width: 50rpx;height: 50rpx;display: inline-block;background: #333;color: #fff">50</view>
+    </view>
+</view>
+<view class="over-test {{show_all?'active':''}}">
+    目前可以明确的是，全面屏（或者称为屏占比较高设计）的智能手机成为下一步百花争艳的最大亮点，已经是板上钉钉。那么在2017年结束之前，会有哪些全面屏手机成为消费者的最佳选择之一呢？我们不妨盘点一下那些已经上市或者即将亮相的产品。
+</view>
+<button bindtap="showAll">显示 | 收起</button>
+<web-view src="https://www.xkedou.cn"></web-view>
+<text>pages/test/test.wxml</text>
+<form bindsubmit="formSubmit" report-submit="true">
+    <button formType="submit">submit</button>
+</form>
+<movable-area style="height: 100%;width: 100%;position:fixed;top:0;left:0;z-index:9999;pointer-events:none;">
+ <movable-view direction="all" style="height: 50px; width: 50px; background: blue;pointer-events:all" x='750' y='750' >
+ </movable-view>
+</movable-area>
+<movable-area style="height: 100%;width: 100%;position:fixed;top:0;left:0;pointer-events:none">
+  <movable-view direction="all" class="float-icon" style='width:100rpx;height:100rpx;pointer-events:all;' x='{{x-60}}' y='{{y-60}}'>
+    <button open-type="contact" class="float-icon-btn" style='width:100%;height:100%;'>
+      <image src="/images/icon-service.png" style='width:100%;height:100%;'></image>
+    </button>
+  </movable-view>
+</movable-area>
+
+
+
+<contact-button style='width:100rpx;height:100rpx;' bindtap='send'>客服</contact-button>

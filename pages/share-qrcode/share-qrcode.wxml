@@ -1,0 +1,31 @@
+<!-- <view class="info" wx:if="{{0}}">
+  <view class="info-title flex-row">
+    <view class="info-left">
+      <view class="info-img">
+        <image class="img" src="{{user_info.avatar_url}}"></image>
+      </view>
+    </view>
+    <view class="info-right">
+      <view class="info-name flex-row">我是：
+        <view class="purple">{{user_info.nickname}}</view>
+      </view>
+      <view class="info-t">代言真的有钱赚！</view>
+    </view>
+  </view>
+  <view class="info-content">
+    <view class="info-label  flex-x-center" style="margin-bottom:32rpx;">
+      <view class="info-qrcode">
+        <image class="qrcode" src="/images/img-share-qrcode.png"></image>
+      </view>
+    </view>
+    <view class="info-label flex-x-center">
+      <view class="info-text">扫描二维码</view>
+    </view>
+    <view class="info-label flex-x-center">
+      <view class="info-text">和我一起赚钱！</view>
+    </view>
+  </view>
+</view> -->
+<view class="i-qrcode flex-row">
+  <image class="img" src="{{qrcode}}" bindtap="click"></image>
+</view>

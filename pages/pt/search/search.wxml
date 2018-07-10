@@ -1,0 +1,76 @@
+<!--pages/pt/search/search.wxml-->
+<view>
+    <view class='search-column flex-row flex-y-center'>
+        <view class='search-column-left flex-grow-1 flex-y-center'>
+            <view class='search-column-icon flex-y-center'>
+                <image src='/images/pt-search-icon.png'></image>
+            </view>
+            <view class='search-column-input flex-y-center'>
+                <input focus="true" confirm-type="搜索" bindconfirm="toSearch" value='{{keyword}}' bindfocus="newSearch" ></input>
+            </view>
+        </view>
+        <view class='cancel-search flex-grow-0 flex-y-center flex-x-center' bindtap='cancelSearchValue'>
+            取消
+        </view>
+    </view>
+    <view style='height:100rpx;'></view>
+    <view class='history' wx:if="{{history_show}}">
+        <view class='history-top flex-row'>
+            <view class='history-top-left flex-grow-1'>
+                历史搜索
+            </view>
+            <view class='history-top-right flex-grow-0' bindtap='clearHistoryInfo'>
+                <image src='/images/pt-search-clear.png'></image>
+            </view>
+        </view>
+        <view class='history-info'>
+            <view class='history-item' wx:for="{{history_info}}" bindtap='historyItem' data-keyword='{{item}}'>
+                {{item}}
+            </view>
+        </view>
+    </view>
+    <view class='goods' wx:if="{{!history_show}}">
+        <block wx:for="{{list}}">
+            <navigator url="/pages/pt/details/details?gid={{item.id}}" open-type="navigate" class='list-item flex-row'>
+                    <view class='flex-grow-0 corver-pic'>
+                            <image src='{{item.cover_pic}}'></image>
+                    </view>
+                    <view class='flex-grow-1 flex-col'>
+                            <view class='flex-grow-1 goods-title'>
+                                    {{item.name}}
+                            </view>
+                            <view class='flex-grow-0 flex-row'>
+                                    <view class='group-item' wx:if='{{item.groupList[0]}}'>
+                                        <view wx:for='{{item.groupList}}' wx:for-item="group">
+                                            <image src='{{group.avatar_url}}'></image>
+                                        </view>
+                                    </view>
+                                    <view class='goods-sales'>
+                                        已团 {{item.virtual_sales}} 件
+                                    </view>
+                            </view>
+                            <view class='flex-grow-0 flex-row flex-y-bottom'>
+                                    <view class='flex-grow-0 price flex-row flex-y-bottom'>
+                                            <view class='unit flex-grow-0 flex-y-bottom'>
+                                                ¥ 
+                                            </view>
+                                            <view class='flex-grow-1 flex-y-bottom'>{{item.price}}</view>
+                                    </view>
+                                    <view class='flex-grow-1 old-price flex-y-bottom'>
+                                            ¥ {{item.original_price}}
+                                    </view>
+                                    <view class='flex-grow-0 group-btn flex-x-center flex-y-center'>
+                                            去开团
+                                    </view>
+                            </view>
+                    </view>
+            </navigator>
+        </block>
+        <view class="loading-bar {{show_loading_bar?'active':''}}" style="text-align: center;">
+            <image style="width: 160rpx;height: 80rpx" src="/images/loading.svg"></image>
+        </view>
+        <view class="empty-bar flex-row flex-x-center" style="{{emptyGoods?'':'display:none'}}">
+            没有更多商品了~
+        </view>
+    </view>
+</view>

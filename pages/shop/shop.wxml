@@ -1,0 +1,43 @@
+<!--pages/shop/shop.wxml-->
+<include src="/commons/navbar/navbar"/>
+<view class="after-navber">
+    <view class='search flex-y-center'>
+        <view class='search-input flex-row'>
+            <input class='input flex-grow-1' placeholder='请输入关键字' bindfocus='inputFocus' bindblur='inputBlur' bindconfirm='inputConfirm' confirm-type='search' bindinput='input' value='{{keyword}}'></input>
+            <view class='search-btn flex-grow-0 flex-y-center flex-x-center flex-row {{show?"":"hidden"}}' bindtap='search'>
+                <image class='flex-grow-0' src='/images/icon-shop-search.png' style='width:24rpx;height:24rpx;margin-right:10rpx;'></image>
+                <view class='flex-grow-1'>搜索</view>
+            </view>
+        </view>
+    </view>
+    <view class='shop-list w-100'>
+        <block wx:for='{{list}}' wx:for-index='index' wx:for-item='item'>
+            <view class='shop-one flex-row' bindtap='go' data-index='{{index}}'>
+                <view class='flex-grow-0 flex-y-center'>
+                    <image src='{{item.pic_url}}' style='width:150rpx;height:150rpx;border-radius:150rpx;'></image>
+                </view>
+                <view class='w-100 flex-grow-1' style='margin:0 20rpx;'>
+                    <view class='text-more' style='color:#353535;'>{{item.name}}</view>
+                    <view class='fs-sm flex-row' style='margin-top:22rpx;'>
+                        <view class='flex-grow-0' style='margin-right:12rpx;'>评分：</view>
+                        <view class='flex-grow-1'>
+                            <block wx:for='{{score}}' wx:for-index='idx' wx:for-item='itemn' wx:if='{{idx <= (item.score-1)}}'>
+                                <image src='/images/icon-shop-love.png' style='margin-right:4rpx;width:20rpx;height:18rpx;'></image>
+                            </block>
+                        </view>
+                    </view>
+                    <view class='fs-sm' style='margin-top:22rpx;'>电话：{{item.mobile}}</view>
+                    <view class='fs-sm' style='margin-top:22rpx;'>距离：{{item.distance==-1?"无":item.distance}}</view>
+                </view>
+                <view class='flex-grow-0 flex-y-center'>
+                    <view catchtap='goto' data-index='{{index}}'>
+                        <view style='text-align: right'>
+                            <image src='/images/icon-shop-nav-1.png' style='width:50rpx;height:50rpx;margin-right:18rpx;margin-bottom:16rpx;'></image>
+                        </view>
+                        <view class='fs-sm flex-x-center'>一键导航</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
