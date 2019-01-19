@@ -1,4 +1,4 @@
-var _api_root = 'https://www.baidu.com/addons/zjhj_mall/core/web/index.php?store_id=1&r=api/';
+var _api_root = 'https://www.baidu.com/addons/swdz_mall/core/web/index.php?store_id=1&r=api/';
 var api = {
     index: _api_root + 'default/index',
     default: {
