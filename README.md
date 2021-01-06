@@ -1,12 +1,16 @@
 # wechat_shop
 微信小程序模版同城微商三级分销系统商城秒杀拼团裂变支付小程序
 
-
+高级版本有uniapp版本，另外有PHP YII2开发的管理后台
 
 电商进阶版
 
 使用
+https://www.9026.com/web/Template/shopSingle?id=15&cate_id=&status=1
+
 成功案例
+https://www.9026.com/web/Case/index
+
 
 后续新增免费升级的功能如下： 
 1.积分商城； 
