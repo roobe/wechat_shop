@@ -20,11 +20,13 @@ https://www.9026.com/web/Template/shopSingle?id=15&cate_id=&status=1
 
 案例 
 
-![test image size-w150](https://xcxcdn.9026.com/upload/temp_qrcode/20171119/88f2e20a949d9ee728dac1636ace38b0.jpg)
-![test image size-w150](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/f5a2f262d35c83e493e8660e9b235f15.jpg)
-![test image size-w150](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/aa354fb0374401f7ade3ad5883ec13ad.jpg)
+<img src="https://xcxcdn.9026.com/upload/temp_qrcode/20171119/88f2e20a949d9ee728dac1636ace38b0.jpg" alt="图片替换文本" height="100" align="bottom" />
+<img src="https://xcxcdn.9026.com/upload/temp_qrcode/20180425/f5a2f262d35c83e493e8660e9b235f15.jpg" alt="图片替换文本" height="100" align="bottom" />
+<img src="https://xcxcdn.9026.com/upload/temp_qrcode/20180425/aa354fb0374401f7ade3ad5883ec13ad.jpg" alt="图片替换文本" height="100" align="bottom" />
+
 
 更多成功案例
+
 https://www.9026.com/web/Case/index
 
 
