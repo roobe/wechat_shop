@@ -20,9 +20,9 @@ https://www.9026.com/web/Template/shopSingle?id=15&cate_id=&status=1
 
 案例 
 
-![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20171119/88f2e20a949d9ee728dac1636ace38b0.jpg){:height="100" width="100"}
-![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/f5a2f262d35c83e493e8660e9b235f15.jpg){:height="100" width="100"}
-![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/aa354fb0374401f7ade3ad5883ec13ad.jpg){:height="100" width="100"}
+![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20171119/88f2e20a949d9ee728dac1636ace38b0.jpg =100x20)
+![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/f5a2f262d35c83e493e8660e9b235f15.jpg =100x20)
+![test image size](https://xcxcdn.9026.com/upload/temp_qrcode/20180425/aa354fb0374401f7ade3ad5883ec13ad.jpg =100x20)
 
 更多成功案例
 https://www.9026.com/web/Case/index
